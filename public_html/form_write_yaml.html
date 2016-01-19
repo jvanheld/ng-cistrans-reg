@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>Amidex Home Project</title>
+
+		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
+
+
+	</head>
+
+	<body>
+		<h1>Formulaire d'annotation des données</h1>
+		
+<!--
+<a href="#" class="info">   <span> </span></a>
+-->
+
+		<script type="text/javascript">
+		// function for add an input html element in the form
+		function add(id, structure) {
+			var input = addInput.innerHTML
+			addInput.innerHTML = input + id +'<input type="text" name="' + structure + '[]" /><br/>\n';
+		}
+		// function for delete an input html element in the form
+		function delInput()
+		{
+			 var input = addInput.innerHTML
+			addInput.innerHTML = ' ';
+		}
+		
+		window.onload = dtableInit;
+ 
+		/* initialise le script */
+		function dtableInit() {
+			var table = document.getElementsByTagName('TABLE');
+			for ( var i = 0; i < table.length; i++ ) {
+				// on récupère tous les tableaux dynamiques
+				if ( table[i].className = 'dTable' ) {
+					var tbody = table[i].tBodies[0];
+					var newTr = tbody.rows[0].cloneNode(true);
+					 
+					// on masque la première ligne du tbody (la ligne de reference)
+					tbody.rows[0].style.display = 'none';
+					 
+					// on en ajoute une
+					tbody.appendChild(newTr);
+				}
+			}
+		}
+		 
+		/* trouve le tag "parentTagName" parent de "element" */
+		function getParent(element, parentTagName) {
+			if ( ! element )
+				return null;
+			else if ( element.nodeType == 1 && element.tagName.toLowerCase() == parentTagName.toLowerCase() )
+				return element;
+			else
+				return getParent(element.parentNode, parentTagName);
+		}
+		 
+		/* ajoute une ligne */
+		function addLigne(link) {
+			// 1. récuperer le node "TABLE" à manipuler
+			var td = link.parentNode;
+			var table = getParent(td,'TABLE');
+			 
+			// 2. on va manipuler le TBODY
+			var tbody = table.tBodies[0];
+			 
+			// 3. on clone la ligne de reference
+			var newTr = tbody.rows[0].cloneNode(true);
+			tbody.appendChild(newTr);
+			 
+			if ( document.all )  // pour IE
+				newTr.style.display = "block";
+			else
+				newTr.style.display = "table-row"; // pour Gecko
+		}
+		 
+		/* supprimer une ligne */
+		function delLigne(link) {
+			// 1. récuperer le node "TABLE" à manipuler
+			var td = link.parentNode;
+			var table = getParent(td, 'TABLE');
+			 
+			// 2. récuperer le TBODY
+			var tbody = table.tBodies[0];
+			 
+			// 3. Supprimer le TR
+			tbody.removeChild(getParent(td, 'TR'));
+		}
+		
+		function insertAfter(newElement, afterElement) {
+			var parent = afterElement.parentNode;
+			
+			if (parent.lastChild === afterElement) { // Si le dernier élément est le même que l'élément après lequel on veut insérer, il suffit de faire appendChild()
+			parent.appendChild(newElement);
+			} else { // Dans le cas contraire, on fait un insertBefore() sur l'élément suivant
+			parent.insertBefore(newElement, afterElement.nextSibling);
+			}
+		}
+
+		function addCol(link){
+			//Partie concernant l'addition d'un champs input
+			// Creation d'un element input
+			var newInput = document.createElement('input');
+			// Definition de ses attributs
+			newInput.type = "text";
+			var toto = document.getElementById('newColname').value;
+			newInput.name = toto;
+			// Creation d'un element td
+			var newTd = document.createElement('td');
+			// Insertion de l'element input dans la balise td
+			newTd.appendChild(newInput);
+			
+			var lastTd = document.getElementById("action");
+			var parentLastTd = lastTd.parentNode;
+			parentLastTd.insertBefore(newTd, lastTd);
+			addLigne(link);
+
+
+			//Partie concernant le titre de la colonnne
+			var tr = document.getElementById('sample_table').tHead.children[0];
+			th = document.createElement('th');
+			th.innerHTML = "fatal";
+			var lastTh = document.getElementById('colRef');
+			tr.insertBefore(th,lastTh);
+			
+			//alert(document.getElementById('newColname').value);
+			jQuery(#InputnewColName).val();
+
+		}
+
+		</script>
+		
+		<div>
+			<form id="form-yaml" action="write_yaml.php" autocomplete="off" method="post">
+				
+				<fieldset>
+				<legend>Series</legend>
+				<p>This section describes the overall experiment</p>
+
+				<label for= "Title"><a href="#" class="info">Title<span>Unique title (less than 255 characters) that describes the overall study.</span></a></label>
+				<input type='text' name="Serie_informations[Title]" id="Title" value="" ><br>
+
+				<label for='Summary'><a href="#" class="info">Summary<span>Thorough description of the goals and objectives of this study. The abstract from the associated publication may be suitable. Include as much text as necessary.</span></a></label>
+				<input type='text' name="Serie_informations[Summary]" id='Summary' value=""><br>
+
+				<label for="Overall_design"><a href="#" class="info">Overall design<span>Indicate how many Samples are analyzed, if replicates are included, are there control and/or reference Samples, etc...</span></a></label>
+				<input type='text' name="Serie_informations[Overall_design]" id="Overall_design" value=""><br>
+
+				<label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label>
+				<input type='text' name="Serie_informations[Contributor][]" id="Contributor" value="" >
+				<div id="addInput"></div>
+				<a href="#" class="info"><input type="button" value="Add input" onClick="add('Contributor','Serie_informations[Contributor]');" /><span>Add the required number of box before filling them.</span></a>
+				<a href="#" class="info"><input type="button" value="Delete input" onClick="delInput();" /><span>This button will clear all the boxes added.</span></a><br>
+
+				<label for= "Supplementary_file"><a href="#" class="info">Supplementary file<span>[optional] If you submit a matrix table containing processed data for all samples, include the file name here.</span></a></label>
+				<input type='text' name="Serie_informations[Supplementary_file]" id="Supplementary_file" value="" ><br>
+
+				<label for= "SRA_center_name_code"><a href="#" class="info">SRA_center_name_code<span>[optional] If you submit a matrix table containing processed data for all samples, include the file name here.</span></a></label>
+				<input type='text' name="Serie_informations[SRA_center_name_code]" id="SRA_center_name_code" value="" ><br>
+
+
+				
+				</fieldset>
+
+				<fieldset>
+				<legend>Samples</legend>
+				<p>This section lists and describes each of the biological Samples under investgation, as well as any protocols that are specific to individual Samples.</p>
+				<p>Additional "processed data file" or "raw file" columns may be included.</p>
+				
+				<table class="dTable" id= 'sample_table'>
+				<thead>
+					<tr>
+						<th>sample_name</th>
+						<th>title</th>
+						<th>source_name</th>
+						<th>organisme</th>
+						<th id="colRef">Actions</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr id="Data" >
+						<td><input type="text" name="Samplename[]" /></td>
+						<td><input type="text" name="title[]" /></td>
+						<td><input type="text" name="source[]" /></td>
+						<td><input type="text" name="organisme[]" /></td>
+						<td id="action"><a href="#" onclick="delLigne(this); return false;">Supp</a><textarea type='text' name="InputnewColName" id="newColname" value="la blage" ></textarea><input type="button" value="add a column" onclick="addCol(this);"></td>
+					</tr>
+				</tbody>
+				
+				<tfoot>
+					<tr>
+						<th colspan="5"><a href="#" onclick="addLigne(this); return false;">Ajouter une ligne</a></th>
+					</tr>
+				</tfoot>
+				
+				</table>
+				
+			<input type="submit" value="Valider">
+			</form>
+		</div>
+		
+
+
+
+
+
+
+
+
+	</body>
+</html>
