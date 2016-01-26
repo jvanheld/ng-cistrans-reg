@@ -1,4 +1,11 @@
-
+h1 {
+	text-align: center;
+}
+h4 {
+	color:#999;
+	margin-bottom:40px;
+	text-align: center;
+}
 a.info {
    position: relative;
    color: black;
@@ -27,4 +34,11 @@ a.info:hover span {
 
    border: 1px solid grey;
    border-left: 4px solid grey;
+}
+
+label
+{
+	display: block; /* La balise devient de type block. */
+	width: 300px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
+	float: left;
 }

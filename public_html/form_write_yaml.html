@@ -8,134 +8,13 @@
 
 
 	</head>
-
+    <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
 	<body>
 		<h1>Formulaire d'annotation des données</h1>
 		
-<!--
-<a href="#" class="info">   <span> </span></a>
--->
-
-		<script type="text/javascript">
-		// function for add an input html element in the form
-		function add(id, structure) {
-			var input = addInput.innerHTML
-			addInput.innerHTML = input + id +'<input type="text" name="' + structure + '[]" /><br/>\n';
-		}
-		// function for delete an input html element in the form
-		function delInput()
-		{
-			 var input = addInput.innerHTML
-			addInput.innerHTML = ' ';
-		}
-		
-		window.onload = dtableInit;
- 
-		/* initialise le script */
-		function dtableInit() {
-			var table = document.getElementsByTagName('TABLE');
-			for ( var i = 0; i < table.length; i++ ) {
-				// on récupère tous les tableaux dynamiques
-				if ( table[i].className = 'dTable' ) {
-					var tbody = table[i].tBodies[0];
-					var newTr = tbody.rows[0].cloneNode(true);
-					 
-					// on masque la première ligne du tbody (la ligne de reference)
-					tbody.rows[0].style.display = 'none';
-					 
-					// on en ajoute une
-					tbody.appendChild(newTr);
-				}
-			}
-		}
-		 
-		/* trouve le tag "parentTagName" parent de "element" */
-		function getParent(element, parentTagName) {
-			if ( ! element )
-				return null;
-			else if ( element.nodeType == 1 && element.tagName.toLowerCase() == parentTagName.toLowerCase() )
-				return element;
-			else
-				return getParent(element.parentNode, parentTagName);
-		}
-		 
-		/* ajoute une ligne */
-		function addLigne(link) {
-			// 1. récuperer le node "TABLE" à manipuler
-			var td = link.parentNode;
-			var table = getParent(td,'TABLE');
-			 
-			// 2. on va manipuler le TBODY
-			var tbody = table.tBodies[0];
-			 
-			// 3. on clone la ligne de reference
-			var newTr = tbody.rows[0].cloneNode(true);
-			tbody.appendChild(newTr);
-			 
-			if ( document.all )  // pour IE
-				newTr.style.display = "block";
-			else
-				newTr.style.display = "table-row"; // pour Gecko
-		}
-		 
-		/* supprimer une ligne */
-		function delLigne(link) {
-			// 1. récuperer le node "TABLE" à manipuler
-			var td = link.parentNode;
-			var table = getParent(td, 'TABLE');
-			 
-			// 2. récuperer le TBODY
-			var tbody = table.tBodies[0];
-			 
-			// 3. Supprimer le TR
-			tbody.removeChild(getParent(td, 'TR'));
-		}
-		
-		function insertAfter(newElement, afterElement) {
-			var parent = afterElement.parentNode;
-			
-			if (parent.lastChild === afterElement) { // Si le dernier élément est le même que l'élément après lequel on veut insérer, il suffit de faire appendChild()
-			parent.appendChild(newElement);
-			} else { // Dans le cas contraire, on fait un insertBefore() sur l'élément suivant
-			parent.insertBefore(newElement, afterElement.nextSibling);
-			}
-		}
-
-		function addCol(link){
-			//Partie concernant l'addition d'un champs input
-			// Creation d'un element input
-			var newInput = document.createElement('input');
-			// Definition de ses attributs
-			newInput.type = "text";
-			var toto = document.getElementById('newColname').value;
-			newInput.name = toto;
-			// Creation d'un element td
-			var newTd = document.createElement('td');
-			// Insertion de l'element input dans la balise td
-			newTd.appendChild(newInput);
-			
-			var lastTd = document.getElementById("action");
-			var parentLastTd = lastTd.parentNode;
-			parentLastTd.insertBefore(newTd, lastTd);
-			addLigne(link);
-
-
-			//Partie concernant le titre de la colonnne
-			var tr = document.getElementById('sample_table').tHead.children[0];
-			th = document.createElement('th');
-			th.innerHTML = "fatal";
-			var lastTh = document.getElementById('colRef');
-			tr.insertBefore(th,lastTh);
-			
-			//alert(document.getElementById('newColname').value);
-			jQuery(#InputnewColName).val();
-
-		}
-
-		</script>
-		
 		<div>
-			<form id="form-yaml" action="write_yaml.php" autocomplete="off" method="post">
+			<form id="form-yaml" action="write_yaml.php"  method="post">
 				
 				<fieldset>
 				<legend>Series</legend>
@@ -150,19 +29,27 @@
 				<label for="Overall_design"><a href="#" class="info">Overall design<span>Indicate how many Samples are analyzed, if replicates are included, are there control and/or reference Samples, etc...</span></a></label>
 				<input type='text' name="Serie_informations[Overall_design]" id="Overall_design" value=""><br>
 
-				<label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label>
-				<input type='text' name="Serie_informations[Contributor][]" id="Contributor" value="" >
-				<div id="addInput"></div>
-				<a href="#" class="info"><input type="button" value="Add input" onClick="add('Contributor','Serie_informations[Contributor]');" /><span>Add the required number of box before filling them.</span></a>
-				<a href="#" class="info"><input type="button" value="Delete input" onClick="delInput();" /><span>This button will clear all the boxes added.</span></a><br>
+				<table class="dTable" id= 'Contributor_table'>
+				<tbody>
+					<tr>
+						<td><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Serie_informations[Contributor][]" id="Contributor" value="" ></td>
+						<td id="action"><a href="#" onclick="delLigne(this); return false;">Delete this contributor</a>
+					</tr>
+				</tbody>
+				
+				<tfoot>
+					<tr>
+						<th colspan="5"><a href="#" onclick="addLigne(this); return false;">Add a contributor</a></th>
+					</tr>
+				</tfoot>
+				
+				</table>
 
 				<label for= "Supplementary_file"><a href="#" class="info">Supplementary file<span>[optional] If you submit a matrix table containing processed data for all samples, include the file name here.</span></a></label>
 				<input type='text' name="Serie_informations[Supplementary_file]" id="Supplementary_file" value="" ><br>
 
 				<label for= "SRA_center_name_code"><a href="#" class="info">SRA_center_name_code<span>[optional] If you submit a matrix table containing processed data for all samples, include the file name here.</span></a></label>
 				<input type='text' name="Serie_informations[SRA_center_name_code]" id="SRA_center_name_code" value="" ><br>
-
-
 				
 				</fieldset>
 
@@ -170,8 +57,8 @@
 				<legend>Samples</legend>
 				<p>This section lists and describes each of the biological Samples under investgation, as well as any protocols that are specific to individual Samples.</p>
 				<p>Additional "processed data file" or "raw file" columns may be included.</p>
-				
-				<table class="dTable" id= 'sample_table'>
+				<h2 id="monid"></h2>
+				<table class="dynatable" id="sample_table">
 				<thead>
 					<tr>
 						<th>sample_name</th>
@@ -188,23 +75,164 @@
 						<td><input type="text" name="title[]" /></td>
 						<td><input type="text" name="source[]" /></td>
 						<td><input type="text" name="organisme[]" /></td>
-						<td id="action"><a href="#" onclick="delLigne(this); return false;">Supp</a><textarea type='text' name="InputnewColName" id="newColname" value="la blage" ></textarea><input type="button" value="add a column" onclick="addCol(this);"></td>
+<!--						<td id="action_function"><a href="#" onclick="delLigne(this); return false;">Delete line</a><textarea name="InputnewColName" id="newColname"  ></textarea>
+							<input type="button" value="add a column" onclick="addCol(this);"></td>-->
+                        <td id="action_function"><a href="#" onclick="delLigne(this); return false;">Delete line</a>
+                            <button form="form-yaml" id="boutonmort" type="button">Add Column</button></td>
 					</tr>
 				</tbody>
 				
 				<tfoot>
 					<tr>
-						<th colspan="5"><a href="#" onclick="addLigne(this); return false;">Ajouter une ligne</a></th>
+						<th colspan="5"><a href="#" onclick="addLigne(this); return false;">Add line</a></th>
 					</tr>
 				</tfoot>
 				
 				</table>
+				</fieldset>
 				
-			<input type="submit" value="Valider">
+				<fieldset>
+				<legend>Protocols</legend>
+				<p> Any of the protocols below which are applicable to only a subset of Samples should be included as additional columns of the SAMPLES section instead.</p>
+				
+				<label for= "Growth_protocol"><a href="#" class="info">Growth protocol<span>[Optional]  Describe the conditions that were used to grow or maintain organisms or cells prior to extract preparation.</span></a></label>
+				<input size= '150' type='text' name="Protocols_informations[Growth protocol]" id="Growth_protocol" value="" ><br>
+				
+				<label for= "Treatment_protocol"><a href="#" class="info">Treatment_protocol<span>[Optional] Describe the treatments applied to the biological material prior to extract preparation.</span></a></label>
+				<input size= '150' type='text' name="Protocols_informations[Treatment_protocol]" id="Treatment_protocol" value="" ><br>
+				
+				<label for= "Extract_protocol"><a href="#" class="info">Extract_protocol<span>Describe the protocols used to extract and prepare the material to be sequenced. </span></a></label>
+				<input size= '150' type='text' name="Protocols_informations[Extract_protocol]" id="Extract_protocol" value="" ><br>
+				
+				<label for= "Library_construction_protocol"><a href="#" class="info">Library_construction_protocol<span>Describe the library construction protocol.</span></a></label>
+				<input size= '150' type='text' name="Protocols_informations[Library_construction_protocol]" id="Library_construction_protocol" value="" ><br>
+				
+				<label for= "Library_strategy"><a href="#" class="info">Library_strategy<span>A Short Read Archive-specific field that describes the sequencing technique for this library. Please select one of the following terms: RNA-Seq miRNA-Seq ncRNA-Seq RNA-Seq (CAGE) RNA-Seq (RACE) ChIP-Seq MNase-Seq MBD-Seq MRE-Seq Bisulfite-Seq Bisulfite-Seq (reduced representation) MeDIP-Seq DNase-Hypersensitivity Tn-Seq FAIRE-seq SELEX RIP-Seq ChIA-PET OTHER</span></a></label>
+				<input size= '150' type='text' name="Protocols_informations[Library_strategy]" id="Library_strategy" value="" ><br>
+				
+			<!--<input type="submit" value="Valider">-->
+				</fieldset>
 			</form>
 		</div>
-		
 
+
+        <script type="text/javascript">
+            // function for add an input html element in the form
+            function add(id, structure) {
+                var input = addInput.innerHTML;
+                addInput.innerHTML = input +'<label for=' + id +'>'+ id +'</label><input type="text" name="' + structure + '[]" /><br/>\n';
+            }
+            // function for delete an input html element in the form
+            function delInput()
+            {
+                var input = addInput.innerHTML;
+                addInput.innerHTML = ' ';
+            }
+
+            window.onload = dtableInit;
+
+            /* initialise le script */
+            function dtableInit() {
+                var table = document.getElementsByTagName('TABLE');
+                for ( var i = 0; i < table.length; i++ ) {
+                    // on récupère tous les tableaux dynamiques
+                    if ( table[i].className = 'dTable' ) {
+                        var tbody = table[i].tBodies[0];
+                        var newTr = tbody.rows[0].cloneNode(true);
+
+                        // on masque la première ligne du tbody (la ligne de reference)
+                        tbody.rows[0].style.display = 'none';
+
+                        // on en ajoute une
+                        tbody.appendChild(newTr);
+                    }
+                }
+            }
+
+            /* trouve le tag "parentTagName" parent de "element" */
+            function getParent(element, parentTagName) {
+                if ( ! element )
+                    return null;
+                else if ( element.nodeType == 1 && element.tagName.toLowerCase() == parentTagName.toLowerCase() )
+                    return element;
+                else
+                    return getParent(element.parentNode, parentTagName);
+            }
+
+            /* ajoute une ligne */
+            function addLigne(link) {
+                // 1. récuperer le node "TABLE" à manipuler
+                var td = link.parentNode;
+                var table = getParent(td,'TABLE');
+
+                // 2. on va manipuler le TBODY
+                var tbody = table.tBodies[0];
+
+                // 3. on clone la ligne de reference
+                var newTr = tbody.rows[0].cloneNode(true);
+                tbody.appendChild(newTr);
+
+                if ( document.all )  // pour IE
+                    newTr.style.display = "block";
+                else
+                    newTr.style.display = "table-row"; // pour Gecko
+            }
+
+            /* supprimer une ligne */
+            function delLigne(link) {
+                // 1. récuperer le node "TABLE" à manipuler
+                var td = link.parentNode;
+                var table = getParent(td, 'TABLE');
+
+                // 2. récuperer le TBODY
+                var tbody = table.tBodies[0];
+
+                // 3. Supprimer le TR
+                tbody.removeChild(getParent(td, 'TR'));
+            }
+
+            function insertAfter(newElement, afterElement) {
+                var parent = afterElement.parentNode;
+
+                if (parent.lastChild === afterElement) { // Si le dernier élément est le même que l'élément après lequel on veut insérer, il suffit de faire appendChild()
+                    parent.appendChild(newElement);
+                } else { // Dans le cas contraire, on fait un insertBefore() sur l'élément suivant
+                    parent.insertBefore(newElement, afterElement.nextSibling);
+                }
+            }
+
+            /*function addCol(link){
+                //Partie concernant l'addition d'un champs input
+                // Creation d'un element input
+                var newInput = document.createElement('input');
+                // Definition de ses attributs
+                newInput.type = "text";
+                var toto = document.getElementById('newColname').value;
+                newInput.name = toto;
+                // Creation d'un element td
+                var newTd = document.createElement('td');
+                // Insertion de l'element input dans la balise td
+                newTd.appendChild(newInput);
+
+                var lastTd = document.getElementById('action_function');
+                var parentLastTd = lastTd.parentNode;
+                parentLastTd.insertBefore(newTd, lastTd);
+                addLigne(link);
+
+
+                //Partie concernant le titre de la colonnne
+                var tr = document.getElementById('sample_table').tHead.children[0];
+                var th = document.createElement('th');
+                th.innerHTML = "fatal";
+                var lastTh = document.getElementById('colRef');
+                tr.insertBefore(th,lastTh);
+
+
+
+            }*/
+
+
+        </script>
 
 
 
