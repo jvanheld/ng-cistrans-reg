@@ -42,3 +42,11 @@ label
 	width: 300px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
 	float: left;
 }
+#sample_table input{
+    width:180px;
+}
+/*Pour cacher la partie du tableau qui doit re remple par l'outils mais créer les champs on display = none le fieldset*/
+
+#hidden_info{
+    display: none;
+}

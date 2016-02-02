@@ -39,11 +39,11 @@ foreach($_POST as $key1 => $value1){
 }
 
 
-//$yaml = yaml_emit($_POST,$encoding = YAML_UTF8_ENCODING );
-//var_dump($yaml);
+$yaml = yaml_emit($_POST,$encoding = YAML_UTF8_ENCODING );
+var_dump($yaml);
 
-//$filename = "description.yaml";
-//$res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
+$filename = "description.yaml";
+$res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
 
 
 ?>

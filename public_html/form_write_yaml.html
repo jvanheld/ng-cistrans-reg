@@ -6,10 +6,11 @@
 
 		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
 
+        <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+        <script type="text/javascript" src="js/function.js"></script>
 
 	</head>
-    <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+
 	<body>
 		<h1>Formulaire d'annotation des données</h1>
 		
@@ -17,7 +18,7 @@
 			<form id="form-yaml" action="write_yaml.php"  method="post">
 				
 				<fieldset>
-				<legend>Series</legend>
+				    <legend>Series</legend>
 				<p>This section describes the overall experiment</p>
 
 				<label for= "Title"><a href="#" class="info">Title<span>Unique title (less than 255 characters) that describes the overall study.</span></a></label>
@@ -54,31 +55,39 @@
 				</fieldset>
 
 				<fieldset>
-				<legend>Samples</legend>
+				    <legend>Samples</legend>
 				<p>This section lists and describes each of the biological Samples under investgation, as well as any protocols that are specific to individual Samples.</p>
 				<p>Additional "processed data file" or "raw file" columns may be included.</p>
-				<h2 id="monid"></h2>
+
 				<table class="dynatable" id="sample_table">
 				<thead>
 					<tr>
-						<th>sample_name</th>
-						<th>title</th>
-						<th>source_name</th>
-						<th>organisme</th>
-						<th id="colRef">Actions</th>
+						<th><a href="#" class="info">Sample_name<span>An arbitrary and unique identifier for each sample. This information will not appear in the final records and is only used as an internal reference. Each row represents a GEO Sample record.</span></a></th>
+                        <th><a href="#" class="info">Title<span>Unique title that describes the Sample.</span></a></th>
+						<th><a href="#" class="info">Source_name<span>Briefly identify the biological material e.g., vastus lateralis muscle.</span></a></th>
+						<th><a href="#" class="info">Organisme<span>Identify the organism(s) from which the sequences were derived.</span></a></th>
+						<th><a href="#" class="info">Molécule<span>Type of molecule that was extracted from the biological material. Include one of the following: total RNA, polyA RNA, cytoplasmic RNA, nuclear RNA, genomic DNA, protein, or other.</span></a></th>
+						<th><a href="#" class="info">Description<span>Type of molecule that was extracted from the biological material. Include one of the following: total RNA, polyA RNA, cytoplasmic RNA, nuclear RNA, genomic DNA, protein, or other.</span></a></th>
+                        <th><a href="#" class="info">Processed_data_file<span>Name of the file containing the processed data. Multiple 'processed data file' columns may be included when multiple processed data files exist for a Sample (as presented in EXAMPLE 1 worksheet).</span></a></th>
+                        <th><a href="#" class="info">Raw_file<span>The name of the files containing the raw data.Additional 'raw data file' columns may be included if more than 1 raw data file exist for a Sample</span></a></th>
+                        <th id="colRef">Actions</th>
 					</tr>
 				</thead>
 				
 				<tbody>
 					<tr id="Data" >
-						<td><input type="text" name="Samplename[]" /></td>
-						<td><input type="text" name="title[]" /></td>
-						<td><input type="text" name="source[]" /></td>
-						<td><input type="text" name="organisme[]" /></td>
-<!--						<td id="action_function"><a href="#" onclick="delLigne(this); return false;">Delete line</a><textarea name="InputnewColName" id="newColname"  ></textarea>
-							<input type="button" value="add a column" onclick="addCol(this);"></td>-->
+						<td class="Sample_name"><input type="text" name="Samples_informations[Sample_name][]" /></td>
+						<td class="title"><input type="text" name="Samples_informations[Title][]" /></td>
+						<td class="source"><input type="text" name="Samples_informations[Source][]" /></td>
+						<td class="organisme"><input type="text" name="Samples_informations[Organisme][]" /></td>
+                        <td class="molécule"><input type="text" name="Samples_informations[Molécule][]" /></td>
+                        <td class="description"><input type="text" name="Samples_informations[Description][]" /></td>
+                        <td class="processed_data_file"><input type="text" name="Samples_informations[Processed_data_file][]" /></td>
+                        <td class="raw_file"><input type="text" name="Samples_informations[Raw_file][]" /></td>
                         <td id="action_function"><a href="#" onclick="delLigne(this); return false;">Delete line</a>
-                            <button form="form-yaml" id="boutonmort" type="button">Add Column</button></td>
+                            <button form="form-yaml" id="addColButton" type="button">Add Column</button>
+							<button form="form-yaml" id="delColButton" type="button">Delete Column</button>
+						</td>
 					</tr>
 				</tbody>
 				
@@ -92,7 +101,7 @@
 				</fieldset>
 				
 				<fieldset>
-				<legend>Protocols</legend>
+				    <legend>Protocols</legend>
 				<p> Any of the protocols below which are applicable to only a subset of Samples should be included as additional columns of the SAMPLES section instead.</p>
 				
 				<label for= "Growth_protocol"><a href="#" class="info">Growth protocol<span>[Optional]  Describe the conditions that were used to grow or maintain organisms or cells prior to extract preparation.</span></a></label>
@@ -109,9 +118,26 @@
 				
 				<label for= "Library_strategy"><a href="#" class="info">Library_strategy<span>A Short Read Archive-specific field that describes the sequencing technique for this library. Please select one of the following terms: RNA-Seq miRNA-Seq ncRNA-Seq RNA-Seq (CAGE) RNA-Seq (RACE) ChIP-Seq MNase-Seq MBD-Seq MRE-Seq Bisulfite-Seq Bisulfite-Seq (reduced representation) MeDIP-Seq DNase-Hypersensitivity Tn-Seq FAIRE-seq SELEX RIP-Seq ChIA-PET OTHER</span></a></label>
 				<input size= '150' type='text' name="Protocols_informations[Library_strategy]" id="Library_strategy" value="" ><br>
-				
-			<!--<input type="submit" value="Valider">-->
 				</fieldset>
+
+                <fieldset id="hidden_info">
+                    <legend>Data processing pipeline</legend>
+
+                    <label for= "Genome_build"><a href="#" class="info">Genome_build<span>.</span></a></label>
+                    <input size= '150' type='text' name="Pipeline_informations[Genome_build]" id="Genome_build" value="" ><br>
+
+                    <label for= "Data_files_format_info"><a href="#" class="info">Processed_data_files_format_and_content<span>.</span></a></label>
+                    <input size= '150' type='text' name="Pipeline_informations[Data_files_format_info][]" id="Data_files_format_info" value="" ><br>
+
+                    <label for= "Data_processing_step"><a href="#" class="info">Data_processing_step<span>.</span></a></label>
+                    <input size= '150' type='text' name="Pipeline_informations[Data_processing_step][]" id="Data_processing_step" value="" ><br>
+
+
+
+                </fieldset>
+
+			<input type="submit" value="Valider">
+
 			</form>
 		</div>
 
@@ -120,7 +146,7 @@
             // function for add an input html element in the form
             function add(id, structure) {
                 var input = addInput.innerHTML;
-                addInput.innerHTML = input +'<label for=' + id +'>'+ id +'</label><input type="text" name="' + structure + '[]" /><br/>\n';
+                addInput.innerHTML = input +'<label for=' + id +'>'+ id +'</label><input class="'+ structure +'" type="text" name="' + structure + '[]" /><br/>\n';
             }
             // function for delete an input html element in the form
             function delInput()
@@ -201,35 +227,6 @@
                 }
             }
 
-            /*function addCol(link){
-                //Partie concernant l'addition d'un champs input
-                // Creation d'un element input
-                var newInput = document.createElement('input');
-                // Definition de ses attributs
-                newInput.type = "text";
-                var toto = document.getElementById('newColname').value;
-                newInput.name = toto;
-                // Creation d'un element td
-                var newTd = document.createElement('td');
-                // Insertion de l'element input dans la balise td
-                newTd.appendChild(newInput);
-
-                var lastTd = document.getElementById('action_function');
-                var parentLastTd = lastTd.parentNode;
-                parentLastTd.insertBefore(newTd, lastTd);
-                addLigne(link);
-
-
-                //Partie concernant le titre de la colonnne
-                var tr = document.getElementById('sample_table').tHead.children[0];
-                var th = document.createElement('th');
-                th.innerHTML = "fatal";
-                var lastTh = document.getElementById('colRef');
-                tr.insertBefore(th,lastTh);
-
-
-
-            }*/
 
 
         </script>
