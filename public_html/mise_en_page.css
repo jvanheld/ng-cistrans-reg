@@ -47,6 +47,11 @@ label
 }
 /*Pour cacher la partie du tableau qui doit re remple par l'outils mais créer les champs on display = none le fieldset*/
 
+
 #hidden_info{
+    display: none;
+}
+
+#Contributor_clone_td{
     display: none;
 }

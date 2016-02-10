@@ -22,7 +22,7 @@
 
 //echo "<br>";
 
-foreach($_POST as $key1 => $value1){
+/*foreach($_POST as $key1 => $value1){
 	if (is_array($value1)){
 		echo $key1." est un tableau <br>";
 		foreach($value1 as $key2 => $value2){
@@ -31,19 +31,28 @@ foreach($_POST as $key1 => $value1){
 			}
 			
 		}
-	}
+
 //	echo "\$_POST[$key] => $value <br>";
 	
 	
 	
-}
+}*/
 
 
-$yaml = yaml_emit($_POST,$encoding = YAML_UTF8_ENCODING );
-var_dump($yaml);
+//$yaml = yaml_emit($_POST,$encoding = YAML_UTF8_ENCODING );
+//var_dump($yaml);
 
 $filename = "description.yaml";
 $res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
+
+
+
+
+//var_dump($data);
+
+
+
+
 
 
 ?>

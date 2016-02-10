@@ -70,15 +70,18 @@ function list_file($cur) {
 
 <!-- liste des répertoires
 et des sous-répertoires -->
-<?php
-/* lien sur la racine */
-list_dir($BASE, rawurldecode($dir), 1);
 
+
+<?php
+list_dir($BASE, rawurldecode($dir), 1);
+?>
+
+<?php
 echo $_SERVER['REMOTE_USER'];
 
 ?>
 
-
+</form>
 
 
 <!--</td></tr>
