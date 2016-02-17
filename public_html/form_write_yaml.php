@@ -35,11 +35,11 @@
 				<tbody>
                     <tr id="Contributor_clone_td">
                         <td  class="Contributor"><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor_clone" value="" ></td>
-                        <td id="action"><a href="#" onclick="delLigne(this); return false;">Delete this contributor</a>
+                        <td id="action"><a href="#!" id="deleteContributor">Delete this contributor</a>
                     </tr>
-					<tr>
-                        <td class="Contributor"><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor" value="" ></td>
-						<td id="action"><a href="#" onclick="delLigne(this); return false;">Delete this contributor</a>
+					<tr id="tr_Contributor1">
+                        <td class="Contributor"><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor1" value="" ></td>
+                        <td id="action"><a href="#!" id="deleteContributor">Delete this contributor</a>
 					</tr>
 				</tbody>
 				
@@ -80,16 +80,30 @@
 				</thead>
 				
 				<tbody>
-					<tr id="Data" >
-						<td class="Sample_name"><input id="Sample_name" type="text" name="Samples_information[Sample_name][]" /></td>
-						<td class="Title"><input id="Title" type="text" name="Samples_information[Title][]" /></td>
-						<td class="Source"><input id="Source" type="text" name="Samples_information[Source][]" /></td>
-						<td class="Organism"><input id="Organism" type="text" name="Samples_information[Organism][]" /></td>
-                        <td class="Molecule"><input id="Molecule" type="text" name="Samples_information[Molecule][]" /></td>
-                        <td class="Description"><input id="Description" type="text" name="Samples_information[Description][]" /></td>
-                        <td class="Processed_data_file"><input id="Processed_data_file" type="text" name="Samples_information[Processed_data_file][]" /></td>
-                        <td class="Raw_file"><input id="Raw_file" type="text" name="Samples_information[Raw_file][]" /></td>
-                        <td id="action_function"><a href="#" onclick="delLigne(this); return false;">Delete line</a>
+                <tr id="Data_clone" >
+                    <td class="Sample_name"><input id="Sample_name" type="text" name="Samples_information[Sample_name][]" /></td>
+                    <td class="Title"><input id="Title" type="text" name="Samples_information[Title][]" /></td>
+                    <td class="Source"><input id="Source" type="text" name="Samples_information[Source][]" /></td>
+                    <td class="Organism"><input id="Organism" type="text" name="Samples_information[Organism][]" /></td>
+                    <td class="Molecule"><input id="Molecule" type="text" name="Samples_information[Molecule][]" /></td>
+                    <td class="Description"><input id="Description" type="text" name="Samples_information[Description][]" /></td>
+                    <td class="Processed_data_file"><input id="Processed_data_file" type="text" name="Samples_information[Processed_data_file][]" /></td>
+                    <td class="Raw_file"><input id="Raw_file" type="text" name="Samples_information[Raw_file][]" /></td>
+                    <td id="action_function"><a href="#!" id="action_deleteLine">Delete line</a>
+                        <button form="form-yaml" id="addColButton" type="button">Add Column</button>
+                        <button form="form-yaml" id="delColButton" type="button">Delete Column</button>
+                    </td>
+                </tr>
+					<tr id="Data1" >
+						<td class="Sample_name"><input id="Sample_name1" type="text" name="Samples_information[Sample_name][]" /></td>
+						<td class="Title"><input id="Title1" type="text" name="Samples_information[Title][]" /></td>
+						<td class="Source"><input id="Source1" type="text" name="Samples_information[Source][]" /></td>
+						<td class="Organism"><input id="Organism1" type="text" name="Samples_information[Organism][]" /></td>
+                        <td class="Molecule"><input id="Molecule1" type="text" name="Samples_information[Molecule][]" /></td>
+                        <td class="Description"><input id="Description1" type="text" name="Samples_information[Description][]" /></td>
+                        <td class="Processed_data_file"><input id="Processed_data_file1" type="text" name="Samples_information[Processed_data_file][]" /></td>
+                        <td class="Raw_file"><input id="Raw_file1" type="text" name="Samples_information[Raw_file][]" /></td>
+                        <td id="action_function"><a href="#!" id="action_deleteLine">Delete line</a>
                             <button form="form-yaml" id="addColButton" type="button">Add Column</button>
 							<button form="form-yaml" id="delColButton" type="button">Delete Column</button>
 						</td>
@@ -131,13 +145,13 @@
                     <label for= "Genome_build"><a href="#" class="info">Genome_build<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Genome_build]" id="Genome_build" value="" ><br>
 
-                    <label for= "Data_files_format_info"><a href="#" class="info">Processed_data_files_format_and_content<span>.</span></a></label>
+                    <!--<label for= "Data_files_format_info"><a href="#" class="info">Processed_data_files_format_and_content<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Data_files_format_info][]" id="Data_files_format_info" value="" ><br>
 
                     <label for= "Data_processing_step"><a href="#" class="info">Data_processing_step<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Data_processing_step][]" id="Data_processing_step" value="" ><br>
 
-
+-->
 
                 </fieldset>
 
@@ -148,115 +162,91 @@
 
 
         <script type="text/javascript">
+                function load_yaml(){
+                    $.getScript('js/function.js', function() {
+                    var data =  <?php echo json_encode(yaml_parse_file("description.yaml")) ?> ;
+                    //on arrive a lire le yaml en le convertissant en json
+                    for ( var $key1 in data ) {
+                        for (var $key2 in data[$key1]) {
+                            if (Array.isArray(data[$key1][$key2])) { //si c'est un tableau on descends d'un cran
+                                var $numberOfLineToAdd = data[$key1][$key2].length;
+                                var $countOfLineToAdd = $numberOfLineToAdd - 2;
+                                while ($countOfLineToAdd != 0) {
+                                    if ($key2 == "Contributor") {
+                                        $indexContributor++;
+                                        var $newEle = $("#Contributor_table tr:eq(0)").clone().attr("id", "tr_Contributor" + $indexContributor);
+                                        $newEle.find("input").each(function () {
+                                            $(this).val('').attr('id', "Contributor" + $indexContributor);
+                                        }).end().appendTo("#Contributor_table");
+                                    }
+                                    if ($key2 == "Sample_name") {
+                                        $indexSample++;
+                                        var $newTr = $("#sample_table tr:eq(1)").clone().attr("id", "Data" + $indexSample);
+                                        $newTr.find("input").each(function () {
+                                            $(this).val('').attr("id", function (_, id) {
+                                                return id + $indexSample
+                                            });
+                                        }).end().appendTo("#sample_table");
+                                    }
 
-            /* trouve le tag "parentTagName" parent de "element" */
-            function getParent(element, parentTagName) {
-                if ( ! element )
-                    return null;
-                else if ( element.nodeType == 1 && element.tagName.toLowerCase() == parentTagName.toLowerCase() )
-                    return element;
-                else
-                    return getParent(element.parentNode, parentTagName);
-            }
+                                    $countOfLineToAdd--;
+                                }
+                                var $boum = 0;
+                                for (var $key3 in data[$key1][$key2]) {
+                                    //console.log(key2);
 
-            /* supprimer une ligne */
-            function delLigne(link) {
-                // 1. récuperer le node "TABLE" à manipuler
-                var td = link.parentNode;
-                var table = getParent(td, 'TABLE');
+                                    console.log($key2 + $boum + " index:" + $boum + ":" + data[$key1][$key2][$key3]);
+                                    if ($boum == 0) {
+                                        $boum++;
+                                        continue;
+                                    }
+                                    else if ($("#" + $key2 + $boum).length) {
+                                        $("#" + $key2 + $boum).val(data[$key1][$key2][$key3]);
 
-                // 2. récuperer le TBODY
-                var tbody = table.tBodies[0];
-
-                // 3. Supprimer le TR
-                tbody.removeChild(getParent(td, 'TR'));
-            }
-
-            function insertAfter(newElement, afterElement) {
-                var parent = afterElement.parentNode;
-
-                if (parent.lastChild === afterElement) { // Si le dernier élément est le même que l'élément après lequel on veut insérer, il suffit de faire appendChild()
-                    parent.appendChild(newElement);
-                } else { // Dans le cas contraire, on fait un insertBefore() sur l'élément suivant
-                    parent.insertBefore(newElement, afterElement.nextSibling);
-                }
-            }
-
-
-            function load_yaml(){
-
-
-                data =  <?php echo json_encode(yaml_parse_file("description.yaml")) ?> ;
-                //on arrive a lire le yaml en le convertissant en json
-                //alert(data["Series_information"]["Contributor"]);
-                for ( var $key1 in data ) {
-
-                    for (var $key2 in data[$key1]) {
-
-                        if (Array.isArray(data[$key1][$key2])) { //si c'est un tableau on descends d'un cran
-                            var $numberOfLineToAdd = data[$key1][$key2].length - 2;
-
-                            for (var $key3 in data[$key1][$key2]) {
-                                //console.log(key2);
-
-                                console.log($key2 + " size:" + $numberOfLineToAdd + ":" + data[$key1][$key2][$key3]);
-
-                                /*if (document.getElementsByClassName($key2)) {
-                                    var $index2 = 0;
-                                    if ($index2 == 0) {
-                                        document.getElementById($key2).setAttribute("value", data[$key1][$key2][$key3]);
-                                        $index2++;
+                                        console.log("id exist");
                                     }
                                     else {
+                                        var $columnName = $key2;
+                                        var $table = $("#sample_table ");
 
-                                        document.getElementById(document.getElementById($key2).setAttribute("value", data[$key1][$key2][$key3]);
-                                        $index2++;
+                                        $('<th>' + $columnName + '</th>').insertBefore($table.find('tr').first().find('th:last'));
+
+                                        //var $numberLine =  ;
+                                        var $lastTd = $table.find('tr:gt(0)').find('td:last');
+
+                                        var $compteur = 0;
+                                        $lastTd.each(function () {
+                                            if ($compteur == 0) { //+data[$key1][$key2][$key3]+
+                                                $('<td class= ' + $columnName + '><input id="' + $columnName + '" class= "' + $columnName + '"type="text" name="Samples_information[' + $columnName + '][]" value= "" ></td>').insertBefore($(this));
+                                                $compteur++;
+                                            }
+                                            else {
+                                                $('<td class= ' + $columnName + '><input id="' + $columnName + $compteur + '" class= "' + $columnName + '"type="text" name="Samples_information[' + $columnName + '][]" value='+data[$key1][$key2][$key3]+' ></td>').insertBefore($(this));
+                                                $compteur++;
+                                            }
+                                        });
 
 
-
-                                    }*/
-
-
-                                    //addLigne();
-                                    //var table = getParent(document.getElementById(key2), 'TABLE');
-
-
-                                    // 2. on va manipuler le TBODY
-                                    //var tbody = table.tBodies[0];
-
-                                    // 3. on clone la ligne de reference
-                                    //var newTr = tbody.rows[0].cloneNode(true);
-                                    //tbody.appendChild(newTr);
-
-                                    //if (document.all)  // pour IE
-                                    //newTr.style.display = "block";
-                                    //else
-                                    //newTr.style.display = "table-row";
-
-                                    //document.getElementById(key2).setAttribute('value', data[key1][key2][key3]);
+                                    }
+                                    $boum++;
+                                }
+                            }
+                            else{ // si tu es pas un tableau on l'injecte dans value des éléments type input
+                                document.getElementById($key2).setAttribute('value', data[$key1][$key2]);
 
                                 }
 
-                            }
-                        else
-                            {// si tu es pas un tableau on l'injecte dans value des éléments type input
-
-                                document.getElementById($key2).setAttribute('value', data[$key1][$key2]);
 
                             }
-
                         }
-
-
-                    }
-                }
-
+                        })
+                };
 
 
         </script>
 
         <?php if (file_exists("description.yaml"))?>
-        <script>load_yaml()</script>
+        <script type="text/javascript">load_yaml()</script>
 
 
 

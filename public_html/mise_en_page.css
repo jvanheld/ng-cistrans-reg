@@ -36,22 +36,24 @@ a.info:hover span {
    border-left: 4px solid grey;
 }
 
-label
-{
+label {
 	display: block; /* La balise devient de type block. */
 	width: 300px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
 	float: left;
 }
-#sample_table input{
+#sample_table input {
     width:180px;
 }
 /*Pour cacher la partie du tableau qui doit re remple par l'outils mais créer les champs on display = none le fieldset*/
 
 
-#hidden_info{
+#hidden_info {
     display: none;
 }
 
-#Contributor_clone_td{
+#Contributor_clone_td {
+    display: none;
+}
+#Data_clone {
     display: none;
 }

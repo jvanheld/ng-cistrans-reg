@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-	$("#sample_table ").on("click", "#addColButton" ,function addCol() {
+	$("#sample_table ").on("click", "#addColButton" ,function () {
 
 		var $this = $(this), $table = $this.closest('table');
 		var $columnName = window.prompt("Enter Column name", "");
@@ -29,12 +29,11 @@ $(document).ready(function () {
 
     $("#sample_table ").on("click", "#delColButton" ,function () {
 
-        var $this = $(this), $table = $this.closest('table');
         var $columnName = window.prompt("Enter Column name", "");
 
         $("th:contains(" + $columnName + ")" ).remove(); //delete the title
         $("td").find('input[name="' + $columnName + '[]"]').remove(); // delete the input element
-        //$("." + columnName +"").remove(); //delete the td element
+        $("." + $columnName +"").remove(); //delete the td element
 
 
     });
@@ -45,22 +44,54 @@ $(document).ready(function () {
 
 
         }
-    )
-    var $indexSample = 1;
+    );
+
+
+    $indexSample = 1;
     $("#sample_table ").on("click","#action_addLine",function (){
-        $("#sample_table tr:eq(1)").clone().find("input").each(function() {
-            $(this).val('').attr('id',function(_, id) { return id + $indexSample });
-        }).end().appendTo("#sample_table");
         $indexSample++;
+        var $newTr = $("#sample_table tr:eq(1)").clone().attr("id", "Data"+ $indexSample);
+        $newTr.find("input").each(function() {
+            $(this).val('').attr("id",function(_, id) { return id + $indexSample });
+        }).end().appendTo("#sample_table");
     });
 
-    var $indexContributor =1;
+
+    $("#sample_table ").on("click","#action_deleteLine",function (){
+        $(this).parents().eq(1).remove();
+        $indexSample--;
+        var $indexRenameSample = $indexSample;
+        $("#sample_table tbody tr:not('#Data_clone')").each(function() {
+            $(this).val('').attr('id',"Data" + $indexRenameSample );
+            $(this).find("input").each(function() {
+                $(this).val('').attr('id',function(_, id) { return id.substr(0,id.length-1) + $indexRenameSample});
+            });
+            $indexRenameSample--;
+        })
+
+    });
+
+    $indexContributor = 1;
     $("#Contributor_table").on("click","#addContributor",function () {
-        var $newEle = $("#Contributor_table tr:eq(1)").clone().attr("id", "tr_Contributor"+ $indexContributor);
-        $newEle.find("input").each(function() {
-            $(this).val('').attr('id',function(_, id) { return id + $indexContributor });
-        }).end().appendTo("#Contributor_table");
         $indexContributor++;
+        var $newEle = $("#Contributor_table tr:eq(0)").clone().attr("id", "tr_Contributor"+ $indexContributor);
+        $newEle.find("input").each(function() {
+            $(this).val('').attr('id',"Contributor" + $indexContributor);
+        }).end().appendTo("#Contributor_table");
     });
 
-});
+    $("#Contributor_table").on("click","#deleteContributor",function () {
+        $(this).parents().eq(1).remove();
+        $indexContributor--;
+        var $indexRename = $indexContributor;
+        $("#Contributor_table tbody tr:not('#Contributor_clone_td')").each(function() {
+            $(this).val('').attr('id',"tr_Contributor" + $indexRename );
+            $(this).find("input").each(function() {
+                $(this).val('').attr('id',"Contributor" + $indexRename);
+            });
+            $indexRename--;
+        })
+    });
+
+
+    });

@@ -10,8 +10,7 @@
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="mise_en_page.css">
 
-	<script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+
 </head>
 
 
@@ -91,4 +90,7 @@ echo $_SERVER['REMOTE_USER'];
 
 
 </body>
+
+<script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+<script type="text/javascript" src="js/function.js"></script>
 </html>
