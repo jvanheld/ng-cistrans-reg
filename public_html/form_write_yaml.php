@@ -7,7 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
 
         <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-        <script type="text/javascript" src="js/function.js"></script>
+<!--        <script type="text/javascript" src="js/function.js"></script> file already include in the end of the page-->
 
 	</head>
 
@@ -195,15 +195,15 @@
                                 for (var $key3 in data[$key1][$key2]) {
                                     //console.log(key2);
 
-                                    console.log($key2 + $boum + " index:" + $boum + ":" + data[$key1][$key2][$key3]);
                                     if ($boum == 0) {
                                         $boum++;
                                         continue;
                                     }
                                     else if ($("#" + $key2 + $boum).length) {
                                         $("#" + $key2 + $boum).val(data[$key1][$key2][$key3]);
+                                        $("#" + $key2 + $boum).attr("value",data[$key1][$key2][$key3]);
+                                        $("#" + $key2 + $boum).attr("placeholder", data[$key1][$key2][$key3]);
 
-                                        console.log("id exist");
                                     }
                                     else {
                                         var $columnName = $key2;

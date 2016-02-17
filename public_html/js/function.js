@@ -59,16 +59,6 @@ $(document).ready(function () {
 
     $("#sample_table ").on("click","#action_deleteLine",function (){
         $(this).parents().eq(1).remove();
-        $indexSample--;
-        var $indexRenameSample = $indexSample;
-        $("#sample_table tbody tr:not('#Data_clone')").each(function() {
-            $(this).val('').attr('id',"Data" + $indexRenameSample );
-            $(this).find("input").each(function() {
-                $(this).val('').attr('id',function(_, id) { return id.substr(0,id.length-1) + $indexRenameSample});
-            });
-            $indexRenameSample--;
-        })
-
     });
 
     $indexContributor = 1;
@@ -82,15 +72,6 @@ $(document).ready(function () {
 
     $("#Contributor_table").on("click","#deleteContributor",function () {
         $(this).parents().eq(1).remove();
-        $indexContributor--;
-        var $indexRename = $indexContributor;
-        $("#Contributor_table tbody tr:not('#Contributor_clone_td')").each(function() {
-            $(this).val('').attr('id',"tr_Contributor" + $indexRename );
-            $(this).find("input").each(function() {
-                $(this).val('').attr('id',"Contributor" + $indexRename);
-            });
-            $indexRename--;
-        })
     });
 
 
