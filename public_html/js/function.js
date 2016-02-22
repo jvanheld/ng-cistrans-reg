@@ -5,6 +5,14 @@ $(document).ready(function () {
 		var $this = $(this), $table = $this.closest('table');
 		var $columnName = window.prompt("Enter Column name", "");
 
+        if ($columnName == null){
+            //$("#sample_table ").stop(true,true);
+            return;
+        }
+        if (! /^[a-zA-Z0-9]+$/.test($columnName)){
+            return;
+        }
+
 		$('<th>' + $columnName + '</th>').insertBefore($table.find('tr').first().find('th:last'));
 
         //var $numberLine =  ;
@@ -30,6 +38,10 @@ $(document).ready(function () {
     $("#sample_table ").on("click", "#delColButton" ,function () {
 
         var $columnName = window.prompt("Enter Column name", "");
+
+        if (! /^[a-zA-Z0-9]+$/.test($columnName)){ // check if the string write by user is available
+            return;
+        }
 
         $("th:contains(" + $columnName + ")" ).remove(); //delete the title
         $("td").find('input[name="' + $columnName + '[]"]').remove(); // delete the input element
