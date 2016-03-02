@@ -44,18 +44,17 @@
 
 $filename = "description.yaml";
 $res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
-
-
-
-
-//var_dump($data);
-
-
-
-
-
-
 ?>
+
+
+	<a href="javascript:history.go(-1)">Retour</a>
+
+
+
+
+
+
+
 
 
 

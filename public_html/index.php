@@ -1,3 +1,8 @@
+<?php
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,7 +10,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Amidex Home Project</title>
 
-		
+    <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
 	
 	<!-- CSS -->
 	<link rel="stylesheet" type="text/css" href="mise_en_page.css">
@@ -23,74 +29,34 @@
 
 
 
-
 <?php
-$BASE = "./workspace";
-function list_dir($base, $cur, $level=0) {
-  global $PHP_SELF, $BASE;
-  if ($dir = opendir($base)) {
-    while($entry = readdir($dir)) {
-      /* chemin relatif à la racine */
-      $file = $base."/".$entry;
-      if(is_dir($file) && !in_array($entry, array(".",".."))) {
-        /* marge gauche */
-        for($i=1; $i<=(4*$level); $i++) {
-            echo "&nbsp;";
-        }
-        /* l'entrée est-elle le dossier courant */
-        if($file == $cur) {
-          echo "<b>$entry</b><br />\n";
-        } else {
-//          echo "<a href=$file> $entry </a><br />\n";
-          echo "<button class='GoButton' id=$entry > $entry </button><br />\n";
-        }
-        /* l'entrée est-elle dans la branche dont le dossier courant est la feuille */
-        if(ereg($file."/",$cur."/")) {
-            list_dir($file, $cur, $level+1);
-        }
-      }
-    }
-    closedir($dir);
-  }
+
+$txt_file = file_get_contents("../access/groups");
+$rows = explode("\n", $txt_file);
+
+$projects =array();
+
+foreach($rows as $row ) {
+    $words_in_row = explode(":",$row);
+    $users = explode(" ", $words_in_row[1]);
+    array_shift($users);
+    $projects[$words_in_row[0]]= $users;
 }
-function list_file($cur) {
-  if ($dir = opendir($cur)) {
-    while($file = readdir($dir)) {
-      echo "$file<br />\n";
+
+foreach(array_keys($projects) as $key){
+    if (in_array($_SERVER['REMOTE_USER'],$projects[$key])){
+        echo "<button class='GoButton' id=$key > $key </button>";
     }
-    closedir($dir);
-  }
+
 }
 ?>
 
-
-<!--<table > <tr valign="top"><td>-->
-
-
-<!-- liste des répertoires
-et des sous-répertoires -->
-
-
-<?php
-list_dir($BASE, rawurldecode($dir), 1);
-?>
-
-<?php
-echo $_SERVER['REMOTE_USER'];
-
-?>
-
-</form>
-
-
-<!--</td></tr>
-</table>-->
-
+        <a href="form_write_yaml.php">Form annotation</a>
 
 
 
 </body>
 
-<script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-<script type="text/javascript" src="js/function.js"></script>
+
+
 </html>

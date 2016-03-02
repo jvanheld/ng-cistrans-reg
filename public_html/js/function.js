@@ -31,7 +31,17 @@ $(document).ready(function () {
 
         });
 
+    });
 
+    $(".GoButton").click(function () {
+
+        $.ajax({
+            type:"POST",
+            url: "/ng-cistrans-reg/define_current_projet.php",
+            data: {"currentProjet": $(this).attr("id") }
+        });
+
+        window.location.replace("/ng-cistrans-reg/up_test_uploadify.php");
 
     });
 
@@ -49,15 +59,6 @@ $(document).ready(function () {
 
 
     });
-
-    $(".GoButton").click(function () {
-
-        alert("hello, "+ $(this).attr("id") + " !");
-
-
-        }
-    );
-
 
     $indexSample = 1;
     $("#sample_table ").on("click","#action_addLine",function (){
