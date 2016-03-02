@@ -17,8 +17,8 @@ session_start();
     <!-- plugin jQuery -->
     <script type="text/javascript" src="jQuery/uploadify/jquery.uploadify.min.js"></script>
     <!-- CSS -->
-    <!--<link rel="stylesheet" type="text/css" href="mise_en_page.css">-->
-    <link rel="stylesheet" type="text/css" href="jQuery/uploadify/uploadify.css" />
+<!--    <link rel="stylesheet" type="text/css" href="css/mise_en_page.css">-->
+    <link rel="stylesheet" type="text/css" href="css/uploadify.css" />
 </head>
 <body>
     <h1>Test upload files with uploadify</h1>

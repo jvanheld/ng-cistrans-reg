@@ -41,7 +41,7 @@ $(document).ready(function () {
             data: {"currentProjet": $(this).attr("id") }
         });
 
-        window.location.replace("/ng-cistrans-reg/up_test_uploadify.php");
+        window.location.replace("/ng-cistrans-reg/upload_files.php");
 
     });
 

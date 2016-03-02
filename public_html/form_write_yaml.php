@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>Amidex Home Project</title>
 
-		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
+		<link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
 
         <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
 <!--        <script type="text/javascript" src="js/function.js"></script> file already include in the end of the page-->

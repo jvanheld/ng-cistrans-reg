@@ -14,7 +14,7 @@ session_start();
     <script type="text/javascript" src="js/function.js"></script>
 	
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="mise_en_page.css">
+	<link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
 
 
 </head>
@@ -51,7 +51,7 @@ foreach(array_keys($projects) as $key){
 }
 ?>
 
-        <a href="form_write_yaml.php">Form annotation</a>
+<!--       permet d'aller au formulaire  <a href="form_write_yaml.php">Form annotation</a>-->
 
 
 

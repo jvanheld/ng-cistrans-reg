@@ -20,7 +20,55 @@ button {
     display: inline-block;
     font-size: 16px;
     border-radius: 10px;
+    background-image: linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -o-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -moz-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -webkit-linear-gradient(top,#0080ff 0%, #40C0FF 100%);
+    background-image: -ms-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0, #0080ff),
+            color-stop(1, #40C0FF)
+    );
+    background-position: center bottom;
 }
+.uploadify-button {
+    background-color: #0080ff;
+    background-position: center top;
+    background-repeat: no-repeat;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    border:solid;
+    color: #FFF;
+    font: bold 12px Arial, Helvetica, sans-serif;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    width: 100%;
+    background-image: linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -o-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -moz-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -webkit-linear-gradient(top,#0080ff 0%, #40C0FF 100%);
+    background-image: -ms-linear-gradient(top, #0080ff 0%, #40C0FF 100%);
+    background-image: -webkit-gradient(
+            linear,
+            left bottom,
+            left top,
+            color-stop(0, #0080ff),
+            color-stop(1, #40C0FF)
+    );
+
+}
+.uploadify:hover .uploadify-button {
+    background-color: #0080ff;
+
+}
+.uploadify-queue {
+    margin-bottom: 1em;
+}
+
 input[type="submit"]{
     background-color: #0080ff;
     border: solid;

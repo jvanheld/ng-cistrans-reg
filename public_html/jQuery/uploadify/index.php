@@ -5,7 +5,7 @@
 <title>UploadiFive Test</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="jquery.uploadify.min.js" type="text/javascript"></script>
-<link rel="stylesheet" type="text/css" href="uploadify.css">
+<link rel="stylesheet" type="text/css" href="../../css/uploadify.css">
 <style type="text/css">
 body {
 	font: 13px Arial, Helvetica, Sans-serif;
