@@ -3,7 +3,8 @@
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 
-$_SESSION["project"] = "./workspace/" . $_POST["currentProjet"];
+$_SESSION["path_project"] = "./workspace/" . $_POST["currentProjet"];
+$_SESSION["project"] = $_POST["currentProjet"];
 
 
 ?>

@@ -21,8 +21,10 @@ session_start();
     <link rel="stylesheet" type="text/css" href="css/uploadify.css" />
 </head>
 <body>
-    <h1>Test upload files with uploadify</h1>
-
+    <h1>Upload files in the <?php echo $_SESSION["project"]?> project</h1>
+    <div class="home-div">
+    <button class="home" onclick="window.location = 'index.php';"> Home </button>
+    </div>
 
     <input type="file" name="file_upload" id="file_upload" />
     <a href="javascript:$('#file_upload').uploadify('upload','*')">Upload Files</a>
@@ -37,7 +39,7 @@ session_start();
                 'multi'          : true,
                 'onUploadStart' : function() {
                     $('#file_upload').uploadify('settings', 'formData', {
-                        'target-project': '<?php echo $_SESSION["project"]?>'
+                        'target-project': '<?php echo $_SESSION["path_project"]?>'
                     });
                 }})
 

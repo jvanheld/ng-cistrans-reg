@@ -15,6 +15,16 @@ a{
 	position: relative;
 	margin-bottom: 1em;
 }
+button.home {
+    background-color: darkorange;
+    border: solid;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 10px;
+}
 .uploadify-button {
 	background-color: #0080ff;
 	background-image: linear-gradient(bottom, #0080ff 0%, #40C0FF 100%);
