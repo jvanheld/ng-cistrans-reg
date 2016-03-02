@@ -36,7 +36,8 @@ session_start();
                 'auto'     : false,
                 'swf'      : 'uploadify.swf',
                 'uploader' : 'uploadify.php',
-                'multi'          : true,
+                'fileTypeExts':'*.bam',
+                'simUploadLimit' :0,
                 'onUploadStart' : function() {
                     $('#file_upload').uploadify('settings', 'formData', {
                         'target-project': '<?php echo $_SESSION["path_project"]?>'
