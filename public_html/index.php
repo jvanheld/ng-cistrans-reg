@@ -28,7 +28,7 @@ session_start();
 		<h4>To use this tool, you have to be register By Lucie Khamvongsa </h4>
 
 
-
+<div id="display_projects">
 <?php
 
 $txt_file = file_get_contents("../access/groups");
@@ -50,9 +50,11 @@ foreach(array_keys($projects) as $key){
 
 }
 ?>
+</div>
 
-<!--       permet d'aller au formulaire  <a href="form_write_yaml.php">Form annotation</a>-->
-
+<div id="create_project">
+    <button id="create_project_button">Create project</button>
+</div>
 
 
 </body>

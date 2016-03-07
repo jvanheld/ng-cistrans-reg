@@ -10,7 +10,7 @@ session_start();
 <head>
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Test upload</title>
+    <title>Amidex Home Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="js/function.js"></script>
@@ -27,6 +27,7 @@ session_start();
     </div>
 
     <input type="file" name="file_upload" id="file_upload" />
+    <br>
     <a href="javascript:$('#file_upload').uploadify('upload','*')">Upload Files</a>
 
     <script type="text/javascript">
@@ -52,7 +53,7 @@ session_start();
 
     </script>
 
-
+    <a href="form_write_yaml.php">Form annotation</a>
 
 </body>
 </html>

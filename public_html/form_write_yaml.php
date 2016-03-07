@@ -34,11 +34,11 @@
 				<table class="dTable" id='Contributor_table'>
 				<tbody>
                     <tr id="Contributor_clone_td">
-                        <td  class="Contributor"><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor_clone" value="" ></td>
+                        <td  class="Contributor"><label for= "Contributor_clone"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor_clone" value="" ></td>
                         <td id="action"><a href="#!" id="deleteContributor">Delete this contributor</a>
                     </tr>
 					<tr id="tr_Contributor1">
-                        <td class="Contributor"><label for= "Contributor"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor1" value="" ></td>
+                        <td class="Contributor"><label for= "Contributor1"><a href="#" class="info">Contributor<span>"Firstname,Initial,Lastname".Example: "John,H,Smith" or "Jane,Doe". Each contributor on a separate case, add as many contributor cases as required.</span></a></label> <input type='text' name="Series_information[Contributor][]" id="Contributor1" value="" ></td>
                         <td id="action"><a href="#!" id="deleteContributor">Delete this contributor</a>
 					</tr>
 				</tbody>

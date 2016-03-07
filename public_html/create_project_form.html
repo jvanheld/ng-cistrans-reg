@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- META -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Amidex Home Project</title>
+
+    <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="js/function.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
+
+</head>
+<body>
+
+<h1>Create a new project</h1>
+
+<div class="home-div">
+    <button class="home" onclick="window.location = 'index.php';"> Home </button>
+</div>
+
+    <form id="create_project_form" action="create_project.php"  method="post">
+        <fieldset>
+            <legend>Information</legend>
+        <label for= "Name_project"><a href="#" class="info">Name project<span>Enter the name project.</span></a></label>
+        <input type='text' name="Name_project" id="Name_project" value="" ><br>
+
+            <table class="dTable" id='User_access_table'>
+                <tbody>
+                <tr id="User_access_clone_td">
+                    <td  class="User_access"><label for= "User_access_clone"><a href="#" class="info">User name<span>"Username" Each user on a separate case, add as many user cases as required.</span></a></label> <input type='text' name="User_access[]" id="User_access_clone" value="" ></td>
+                    <td id="action"><a href="#!" id="deleteUser">Delete this user</a>
+                </tr>
+                <tr id="tr_User_acess1">
+                    <td class="User_access"><label for= "User_access1"><a href="#" class="info">User name<span>"Username" Each user on a separate case, add as many user cases as required.</span></a></label> <input type='text' name="User_access[]" id="User_access1" value="" ></td>
+                    <td id="action"><a href="#!" id="deleteUser">Delete this user</a>
+                </tr>
+                </tbody>
+
+                <tfoot>
+                <tr>
+                    <th colspan="5"><a href="#!" id="addUser">Add a user</a></th>
+                </tr>
+                </tfoot>
+            </table>
+
+        </fieldset>
+        <input type="submit" value="Valider">
+    </form>
+
+</body>
+</html>

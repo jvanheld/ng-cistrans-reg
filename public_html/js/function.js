@@ -44,6 +44,9 @@ $(document).ready(function () {
         window.location.replace("/ng-cistrans-reg/upload_files.php");
 
     });
+    $("#create_project_button").click(function () {
+        window.location.replace("/ng-cistrans-reg/create_project_form.html");
+    });
 
     $("#sample_table ").on("click", "#delColButton" ,function () {
 
@@ -84,6 +87,19 @@ $(document).ready(function () {
     });
 
     $("#Contributor_table").on("click","#deleteContributor",function () {
+        $(this).parents().eq(1).remove();
+    });
+
+    $indexUser = 1;
+    $("#User_access_table").on("click","#addUser", function() {
+        $indexUser++;
+        var $newEle = $("#User_access_table tr:eq(0)").clone().attr("id", "tr_User_acess"+ $indexUser);
+        $newEle.find("input").each(function() {
+            $(this).val('').attr('id',"User_acess" + $indexUser);
+        }).end().appendTo("#User_access_table");
+    });
+
+    $("#User_access_table").on("click","#deleteUser",function() {
         $(this).parents().eq(1).remove();
     });
 
