@@ -33,6 +33,7 @@ session_start();
     <script type="text/javascript">
         $(function() {
             $('#file_upload').uploadify({
+                'buttonText':'Select files to upload',
                 'method': 'post',
                 'auto'     : false,
                 'swf'      : 'uploadify.swf',

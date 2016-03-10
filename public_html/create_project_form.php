@@ -27,24 +27,6 @@
         <label for= "Name_project"><a href="#" class="info">Project name <span>Enter the name project.</span></a></label>
         <input type='text' name="Name_project" id="Name_project" value="" ><br>
 
-            <!--<table class="dTable" id='User_access_table'>
-                <tbody>
-                <tr id="User_access_clone_td">
-                    <td  class="User_access"><label for= "User_access_clone"><a href="#" class="info">User name<span>"Username" Each user on a separate case, add as many user cases as required.</span></a></label> <input type='text' name="User_access[]" id="User_access_clone" value="" ></td>
-                    <td id="action"><a href="#!" id="deleteUser">Delete this user</a>
-                </tr>
-                <tr id="tr_User_acess1">
-                    <td class="User_access"><label for= "User_access1"><a href="#" class="info">User name<span>"Username" Each user on a separate case, add as many user cases as required.</span></a></label> <input type='text' name="User_access[]" id="User_access1" value="" ></td>
-                    <td id="action"><a href="#!" id="deleteUser">Delete this user</a>
-                </tr>
-                </tbody>
-
-                <tfoot>
-                <tr>
-                    <th colspan="5"><a href="#!" id="addUser">Add a user</a></th>
-                </tr>
-                </tfoot>
-            </table>-->
             Select users you invite to collaborate on this new project <br>
 <?php
 $txt_file = file_get_contents("../access/.htpasswd");

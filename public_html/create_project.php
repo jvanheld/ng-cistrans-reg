@@ -57,7 +57,7 @@ if(empty($_POST["Name_project"])){
 
 $htaccessfile = fopen($pathFolder . "/.htaccess","w+");
 
-$contents = "\tAuthName \"Acces projet regulation restreint\" \n\tRequire group " . $_POST["Name_project"];
+$contents = "\tAuthName \"restricted\" \n\tRequire group " . $_POST["Name_project"];
 
 if(fwrite($htaccessfile,$contents)) {
     echo "The access to the project has been correctly defined";
@@ -69,17 +69,25 @@ if(fwrite($htaccessfile,$contents)) {
 fclose($htaccessfile);
 
 $usersList = "";
-for ($i = 1 ;$i < count($_POST["User_access"]); $i++) {
+for ($i = 0 ;$i < count($_POST["User_access"]); $i++) {
     $usersList = $usersList . $_POST["User_access"][$i] . " ";
 }
 
 $groupsfile = fopen("../access/groups","a");
 
-$contentsgroups = "\n" . $_POST["Name_project"] . ": " . $usersList;
+$contentsgroups = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'] . " " . $usersList ;
 
 fwrite($groupsfile,$contentsgroups);
 
 fclose($groupsfile);
+
+$ownersfile = fopen("../access/project_owner","a");
+
+$contentsowners = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'];
+
+fwrite($ownersfile,$contentsowners);
+
+fclose($ownersfile);
 
 ?>
     <a href="javascript:history.go(-1)">Retour</a>
