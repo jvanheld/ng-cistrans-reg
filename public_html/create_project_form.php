@@ -6,6 +6,7 @@
     <title>Amidex Home Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+    <script type="text/javascript" src="jQuery/DataTables-1.10.10/media/js/jquery.dataTables.js"></script>
     <script type="text/javascript" src="js/function.js"></script>
 
     <!-- CSS -->
@@ -23,10 +24,10 @@
     <form id="create_project_form" action="create_project.php"  method="post">
         <fieldset>
             <legend>Information</legend>
-        <label for= "Name_project"><a href="#" class="info">Name project<span>Enter the name project.</span></a></label>
+        <label for= "Name_project"><a href="#" class="info">Project name <span>Enter the name project.</span></a></label>
         <input type='text' name="Name_project" id="Name_project" value="" ><br>
 
-            <table class="dTable" id='User_access_table'>
+            <!--<table class="dTable" id='User_access_table'>
                 <tbody>
                 <tr id="User_access_clone_td">
                     <td  class="User_access"><label for= "User_access_clone"><a href="#" class="info">User name<span>"Username" Each user on a separate case, add as many user cases as required.</span></a></label> <input type='text' name="User_access[]" id="User_access_clone" value="" ></td>
@@ -43,7 +44,38 @@
                     <th colspan="5"><a href="#!" id="addUser">Add a user</a></th>
                 </tr>
                 </tfoot>
+            </table>-->
+            Select users you invite to collaborate on this new project <br>
+<?php
+$txt_file = file_get_contents("../access/.htpasswd");
+$rows = explode("\n", $txt_file);
+
+$users =array();
+
+foreach($rows as $row ) {
+    $words_in_row = explode(":",$row);
+    array_push($users, $words_in_row[0]);
+}
+
+?>
+            <table id="User_access_table">
+                <tr></tr>
             </table>
+            <script type="text/javascript">
+                    var tableUsers = <?php echo json_encode($users)?>;
+                    var user_in_line = 0;
+                    tableUsers.forEach(function(entry) {
+                        if (user_in_line == 10){
+                            $("#User_access_table").append("<tr></tr>");
+                            user_in_line =0;
+                        }
+                        $("#User_access_table tr:last").append("<td><input type='checkbox' name='User_access[]' value=" + entry + ">" + entry + "</td>");
+                        user_in_line ++;
+                    })
+
+
+
+            </script>
 
         </fieldset>
         <input type="submit" value="Valider">

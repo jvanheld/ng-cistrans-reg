@@ -45,7 +45,7 @@ $(document).ready(function () {
 
     });
     $("#create_project_button").click(function () {
-        window.location.replace("/ng-cistrans-reg/create_project_form.html");
+        window.location.replace("/ng-cistrans-reg/create_project_form.php");
     });
 
     $("#sample_table ").on("click", "#delColButton" ,function () {
