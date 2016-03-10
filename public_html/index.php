@@ -44,7 +44,9 @@ foreach($rows as $row ) {
 }
 
 foreach(array_keys($projects) as $key){
-    echo "<button class='GoButton' id=$key > $key </button>";
+    if (in_array($_SERVER['REMOTE_USER'],$projects[$key])){
+        echo "<button class='GoButton' id=$key > $key </button>";
+    }
 
 }
 ?>

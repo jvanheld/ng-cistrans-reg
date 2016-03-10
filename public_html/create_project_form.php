@@ -54,8 +54,11 @@ $users =array();
 
 foreach($rows as $row ) {
     $words_in_row = explode(":",$row);
-    array_push($users, $words_in_row[0]);
-}
+    if ($_SERVER['REMOTE_USER'] != $words_in_row[0]){
+        array_push($users, $words_in_row[0]);
+    }
+
+};
 
 ?>
             <table id="User_access_table">
