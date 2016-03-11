@@ -45,8 +45,6 @@ session_start();
                         'target-project': '<?php echo $_SESSION["path_project"]?>'
                     });
                 }})
-
-
             ;
 
 
@@ -54,7 +52,7 @@ session_start();
 
     </script>
 
-    <a href="form_write_yaml.php">Form annotation</a>
+<!--    <a href="form_write_yaml.php">Form annotation</a>-->
 
 </body>
 </html>

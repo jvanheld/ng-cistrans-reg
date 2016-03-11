@@ -49,8 +49,14 @@ set_error_handler('my_error_handler');
 if(empty($_POST["Name_project"])){
     trigger_error('Please enter a name project for create it', E_USER_NOTICE);
 }else {
-    $pathFolder = "./workspace/" . $_POST["Name_project"];
-    mkdir($pathFolder,0755);
+    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
+    mkdir($pathFolder,0755);//folder project
+    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
+    mkdir($pathFolder,0755);//subfolder data
+    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
+    mkdir($pathFolder,0755);//subfolder results
+    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
+    mkdir($pathFolder,0755);//subfolder script
     echo "The creation of the project directory succeeded";
     echo "<br>";
 }

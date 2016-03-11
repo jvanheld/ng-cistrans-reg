@@ -6,7 +6,7 @@
 //session_id($_POST["sid"]);
 
 // Define a destination
-$targetFolder = $_POST["target-project"];
+$targetFolder = $_POST["target-project"] . "/data";
 
 $verifyToken = md5('unique_salt' . $_POST['timestamp']);
 

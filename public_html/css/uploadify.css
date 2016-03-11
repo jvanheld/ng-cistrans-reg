@@ -60,7 +60,7 @@ button.home {
 	border-radius: 10px;
 	border:solid ;
 	color: #FFF;
-    padding: 10px 20px;
+    padding: 6px 20px;
 	font: bold 12px Arial, Helvetica, sans-serif;
 	text-align: center;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
@@ -88,6 +88,7 @@ button.home {
 }
 .uploadify-queue {
 	margin-bottom: 1em;
+    margin-top: 2em;
 }
 .uploadify-queue-item {
 	background-color: #F5F5F5;
