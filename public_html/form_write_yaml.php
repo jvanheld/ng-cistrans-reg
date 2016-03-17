@@ -1,18 +1,22 @@
+<?php
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+?>
+
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Amidex Home Project</title>
+		<title>NG-cistrans-reg Project</title>
 
-		<link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
+		<link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
 
         <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-<!--        <script type="text/javascript" src="js/function.js"></script> file already include in the end of the page-->
 
 	</head>
 
 	<body>
-		<h1>Formulaire d'annotation des données</h1>
+		<h1>Form annotations</h1>
 
 		
 		<div>
@@ -163,8 +167,8 @@
 
         <script type="text/javascript">
                 function load_yaml(){
-                    $.getScript('js/function.js', function() {
-                    var data =  <?php echo json_encode(yaml_parse_file("description.yaml")) ?> ;
+                    $.getScript('js/NGcistrans_functions.js', function() {
+                    var data =  <?php echo json_encode(yaml_parse_file($_SESSION["path_project"] . "/data" . "/description.yaml")) ?> ;
                     //on arrive a lire le yaml en le convertissant en json
                     for ( var $key1 in data ) {
                         for (var $key2 in data[$key1]) {
@@ -246,7 +250,7 @@
 
         </script>
 
-        <?php if (file_exists("description.yaml"))?>
+        <?php if (file_exists($_SESSION["path_project"] . "/data" . "/description.yaml"))?>
         <script type="text/javascript">load_yaml()</script>
 
 

@@ -1,10 +1,12 @@
-
-
+<?php
+session_start();
+/*session is started if you don't write this line can't use $_Session  global variable*/
+?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Amidex Home Project</title>
+		<title>NG-cistrans-reg Project</title>
 <!--
 		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
 -->
@@ -42,7 +44,7 @@
 //$yaml = yaml_emit($_POST,$encoding = YAML_UTF8_ENCODING );
 //var_dump($yaml);
 
-$filename = "description.yaml";
+$filename = $_SESSION["path_project"] . "/data" . "/description.yaml";
 $res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
 ?>
 

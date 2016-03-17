@@ -1,8 +1,6 @@
 <?php
-
 session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
-
 ?>
 
 <!DOCTYPE html>
@@ -10,10 +8,10 @@ session_start();
 <head>
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Amidex Home Project</title>
+    <title>NG-cistrans-reg Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
     <!-- plugin jQuery -->
     <script type="text/javascript" src="jQuery/uploadify/jquery.uploadify.min.js"></script>
     <!-- CSS -->
@@ -46,13 +44,9 @@ session_start();
                     });
                 }})
             ;
-
-
         });
 
     </script>
-
-<!--    <a href="form_write_yaml.php">Form annotation</a>-->
 
 </body>
 </html>

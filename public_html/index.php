@@ -8,13 +8,13 @@ session_start();
 <head>
 	<!-- META -->
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Amidex Home Project</title>
+		<title>Ng-cistrans-reg Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
 	
 	<!-- CSS -->
-	<link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
+	<link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
 
 
 </head>
@@ -23,12 +23,11 @@ session_start();
 <body>
 
 	
-		<h1>
-		Welcome to ng-cistrans-reg project </h1>
-		<h4>To use this tool, you have to be register By Lucie Khamvongsa </h4>
+    <h1>Welcome to ng-cistrans-reg project</h1>
 
-
-<div id="display_projects">
+    <fieldset>
+        <legend>Access to your projects</legend>
+        <ul>
 <?php
 
 $txt_file = file_get_contents("../access/groups");
@@ -45,20 +44,18 @@ foreach($rows as $row ) {
 
 foreach(array_keys($projects) as $key){
     if (in_array($_SERVER['REMOTE_USER'],$projects[$key])){
-        echo "<button class='GoButton' id=$key > $key </button>";
+        echo "<li><a href='project_menu.php' class='Go' id=$key > $key </a></li>";
     }
-
 }
 ?>
-</div>
+        </ul>
+    </fieldset>
 
 <div id="create_project">
-    <button id="create_project_button">Create project</button>
+    <a href="create_project_form.php">Create project</a>
+
 </div>
 
 
 </body>
-
-
-
 </html>

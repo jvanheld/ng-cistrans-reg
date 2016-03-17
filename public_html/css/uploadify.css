@@ -6,39 +6,28 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 
 h1 {
 	text-align: center;
-	color: #3399ff;
+	color: #66b3ff;
 }
+
+h2 {
+	text-align: center;
+	color: #b3d9ff;
+}
+
 a{
     padding: 30px;
     color: orangered;
 }
+
 .uploadify {
 	position: relative;
 	margin-bottom: 1em;
 }
-button.home {
-    background-color: darkorange ;
-    border: solid;
-    color: white;
-    padding: 12px 30px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    border-radius: 10px;
-    background-image: linear-gradient(top, #ff4500 0%, #ff8b06 100%);
-    background-image: -o-linear-gradient(top, #ff4500 0%, #ff8b06 100%);
-    background-image: -moz-linear-gradient(top, #ff4500 0%, #ff8b06 100%);
-    background-image: -webkit-linear-gradient(top,#ff4500 0%, #ff8b06 100%);
-    background-image: -ms-linear-gradient(top, #ff4500 0%, #ff8b06 100%);
-    background-image: -webkit-gradient(
-            linear,
-            left bottom,
-            left top,
-            color-stop(0, #ff4500),
-            color-stop(1, #ff8b06)
-    );
+
+span {
+
 }
+
 .uploadify-button {
 	background-color: #0080ff;
 	background-image: linear-gradient(bottom, #0080ff 0%, #40C0FF 100%);
@@ -61,7 +50,7 @@ button.home {
 	border:solid ;
 	color: #FFF;
     padding: 6px 20px;
-	font: bold 12px Arial, Helvetica, sans-serif;
+	font: bold 68% Arial, Helvetica, sans-serif;
 	text-align: center;
 	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 	width: 100%;

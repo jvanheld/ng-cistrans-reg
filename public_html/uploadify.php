@@ -1,10 +1,5 @@
 <?php
 
-//session_start();
-/*session is started if you don't write this line can't use $_Session  global variable*/
-
-//session_id($_POST["sid"]);
-
 // Define a destination
 $targetFolder = $_POST["target-project"] . "/data";
 

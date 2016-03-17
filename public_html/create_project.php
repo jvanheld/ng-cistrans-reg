@@ -8,13 +8,13 @@ session_start();
 <head>
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Amidex Home Project</title>
+    <title>NG-cistrans-reg Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
+    <link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
 
 
 </head>
@@ -51,12 +51,12 @@ if(empty($_POST["Name_project"])){
 }else {
     $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
     mkdir($pathFolder,0755);//folder project
-    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
-    mkdir($pathFolder,0755);//subfolder data
-    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
-    mkdir($pathFolder,0755);//subfolder results
-    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
-    mkdir($pathFolder,0755);//subfolder script
+    $pathSubFolderData = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
+    mkdir($pathSubFolderData,0755);//subfolder data
+    $pathSubFolderResults = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
+    mkdir($pathSubFolderResults,0755);//subfolder results
+    $pathSubFolderScripts = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
+    mkdir($pathSubFolderScripts,0755);//subfolder scripts
     echo "The creation of the project directory succeeded";
     echo "<br>";
 }

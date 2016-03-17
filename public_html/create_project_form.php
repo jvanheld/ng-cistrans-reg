@@ -3,14 +3,14 @@
 <head>
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Amidex Home Project</title>
+    <title>NG-cistrans-reg Project</title>
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="jQuery/DataTables-1.10.10/media/js/jquery.dataTables.js"></script>
-    <script type="text/javascript" src="js/function.js"></script>
+    <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
 
     <!-- CSS -->
-    <link rel="stylesheet" type="text/css" href="css/mise_en_page.css">
+    <link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
 
 </head>
 <body>
@@ -57,9 +57,6 @@ foreach($rows as $row ) {
                         $("#User_access_table tr:last").append("<td><input type='checkbox' name='User_access[]' value=" + entry + ">" + entry + "</td>");
                         user_in_line ++;
                     })
-
-
-
             </script>
 
         </fieldset>

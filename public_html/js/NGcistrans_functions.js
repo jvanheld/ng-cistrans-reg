@@ -33,20 +33,18 @@ $(document).ready(function () {
 
     });
 
-    $(".GoButton").click(function () {
+    $(".Go").click(function () {
 
         $.ajax({
             type:"POST",
             url: "/ng-cistrans-reg/define_current_projet.php",
             data: {"currentProjet": $(this).attr("id") }
         });
-
-        window.location.replace("/ng-cistrans-reg/upload_files.php");
-
+        //window.location = "/ng-cistrans-reg/display_possibilities.php";
     });
-    $("#create_project_button").click(function () {
-        window.location.replace("/ng-cistrans-reg/create_project_form.php");
-    });
+    /*$("#create_project_button").click(function () {
+        window.location = "/ng-cistrans-reg/create_project_form.php";
+    });*/
 
     $("#sample_table ").on("click", "#delColButton" ,function () {
 
