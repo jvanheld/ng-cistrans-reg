@@ -16,9 +16,10 @@ session_start();
 	</head>
 
 	<body>
-		<h1>Form annotations</h1>
+		<h2>Form annotations</h2>
 
-		
+        <!-- Check if there are already files in the project and adapt the menu accordingly -->
+        <?php if (count(scandir($_SESSION["path_project"] . "/data")) != 2):?>
 		<div>
 			<form id="form-yaml" action="write_yaml.php"  method="post">
 				
@@ -163,7 +164,11 @@ session_start();
 
 			</form>
 		</div>
+        <?php else:?>
 
+            <p>The project has no files so it's not possible to annotate it.</p>
+
+        <?php endif ?>
 
         <script type="text/javascript">
                 function load_yaml(){

@@ -23,7 +23,7 @@ session_start();
     <h1>Create a new project</h1>
 
     <div class="home-div">
-        <button class="home" onclick="window.location = 'index.php';"> Home </button>
+        <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
     </div>
 
 <?php
@@ -36,6 +36,16 @@ function my_error_handler($no, $str, $file, $line)
             exit; // On arrête le script
             break;
 
+        // Avertissement
+        case E_USER_WARNING:
+            echo '<p><strong>Avertissement</strong> : '.$str.'</p>';
+            break;
+
+        // Note
+        case E_USER_NOTICE:
+            echo '<p><strong>Note</strong> : '.$str.'</p>';
+            break;
+
         // Erreur générée par PHP
         default:
             echo '<p><strong>Erreur inconnue</strong> ['.$no.'] : '.$str.'<br/>';
@@ -46,55 +56,69 @@ function my_error_handler($no, $str, $file, $line)
 
 set_error_handler('my_error_handler');
 
-if(empty($_POST["Name_project"])){
+$projectExist = file_get_contents("../access/groups");
+$rows = explode("\n", $projectExist);
+
+$projects =array();
+
+foreach($rows as $row ) {
+    $words_in_row = explode(":",$row);
+    array_push($projects,$words_in_row[1]);
+}
+
+if(empty($_POST["Name_project"]) ){
     trigger_error('Please enter a name project for create it', E_USER_NOTICE);
-}else {
-    $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
-    mkdir($pathFolder,0755);//folder project
-    $pathSubFolderData = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
-    mkdir($pathSubFolderData,0755);//subfolder data
-    $pathSubFolderResults = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
-    mkdir($pathSubFolderResults,0755);//subfolder results
-    $pathSubFolderScripts = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
-    mkdir($pathSubFolderScripts,0755);//subfolder scripts
-    echo "The creation of the project directory succeeded";
-    echo "<br>";
+    }else {
+        if (!in_array($_POST["Name_project"],$projects)){
+            trigger_error('The name project is already use. Please choose another one.', E_USER_NOTICE);
+        }else{
+            $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
+            mkdir($pathFolder, 0755);//folder project
+            $pathSubFolderData = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
+            mkdir($pathSubFolderData, 0755);//subfolder data
+            $pathSubFolderResults = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
+            mkdir($pathSubFolderResults, 0755);//subfolder results
+            $pathSubFolderScripts = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
+            mkdir($pathSubFolderScripts, 0755);//subfolder scripts
+            echo "The creation of the project directory succeeded";
+            echo "<br>";
+
+
+            $htaccessfile = fopen($pathFolder . "/.htaccess", "w+");
+
+            $contents = "\tAuthName \"restricted\" \n\tRequire group " . $_POST["Name_project"];
+
+            if (fwrite($htaccessfile, $contents)) {
+                echo "The access to the project has been correctly defined";
+
+            } else {
+                // Erreur
+                echo "There is a problem with access restrictions to the project";
+            }
+            fclose($htaccessfile);
+
+            $usersList = "";
+            for ($i = 0; $i < count($_POST["User_access"]); $i++) {
+                $usersList = $usersList . $_POST["User_access"][$i] . " ";
+            }
+
+            $groupsfile = fopen("../access/groups", "a");
+
+            $contentsgroups = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'] . " " . $usersList;
+
+            fwrite($groupsfile, $contentsgroups);
+
+            fclose($groupsfile);
+
+            $ownersfile = fopen("../access/project_owner", "a");
+
+            $contentsowners = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'];
+
+            fwrite($ownersfile, $contentsowners);
+
+            fclose($ownersfile);
+        }
 }
-
-$htaccessfile = fopen($pathFolder . "/.htaccess","w+");
-
-$contents = "\tAuthName \"restricted\" \n\tRequire group " . $_POST["Name_project"];
-
-if(fwrite($htaccessfile,$contents)) {
-    echo "The access to the project has been correctly defined";
-
-}else{
-    // Erreur
-    echo "There is a problem with access restrictions to the project";
-}
-fclose($htaccessfile);
-
-$usersList = "";
-for ($i = 0 ;$i < count($_POST["User_access"]); $i++) {
-    $usersList = $usersList . $_POST["User_access"][$i] . " ";
-}
-
-$groupsfile = fopen("../access/groups","a");
-
-$contentsgroups = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'] . " " . $usersList ;
-
-fwrite($groupsfile,$contentsgroups);
-
-fclose($groupsfile);
-
-$ownersfile = fopen("../access/project_owner","a");
-
-$contentsowners = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'];
-
-fwrite($ownersfile,$contentsowners);
-
-fclose($ownersfile);
 
 ?>
-    <a href="javascript:history.go(-1)">Retour</a>
 </body>

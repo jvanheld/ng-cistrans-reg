@@ -18,7 +18,7 @@
 <h1>Create a new project</h1>
 
 <div class="home-div">
-    <button class="home" onclick="window.location = 'index.php';"> Home </button>
+    <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
 </div>
 
     <form id="create_project_form" action="create_project.php"  method="post">

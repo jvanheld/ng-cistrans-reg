@@ -10,7 +10,6 @@ session_start();
     <!-- META -->
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>NG-cistrans-reg Home Project</title>
-<!--    a refaire-->
 
     <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
     <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
@@ -27,7 +26,7 @@ session_start();
 
 
 <div class="home-div">
-    <a href='index.php';">Home</a>
+    <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
 </div>
 <?php
 
@@ -45,9 +44,6 @@ foreach ($rows as $row ) {
                 });
             </script>
 <?php }}} ?>
-
-<!-- Check if there are already files in the project and adapt the menu accordingly -->
-<!--//if (count(scandir($_SESSION["path_project"] . "/data")) != 2): -->
 
     <script>
         $(function() {

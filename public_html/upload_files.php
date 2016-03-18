@@ -21,7 +21,7 @@ session_start();
 <body>
     <h1>Upload files in the <?php echo $_SESSION["project"]?> project</h1>
     <div class="home-div">
-    <button class="home" onclick="window.location = 'index.php';"> Home </button>
+        <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
     </div>
 
     <input type="file" name="file_upload" id="file_upload" />
