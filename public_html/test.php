@@ -1,12 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lkhamvongsa
- * Date: 2/22/16
- * Time: 11:48 AM
- * Ce fichier contient la partie devellopé en php pour vérifier automatiquement quels sont les projets existant
- * côté serveur et les disposer en bouton solution mise de côté car JvH propose solution de passer par un fichier référence.
- */
 
 
 $BASE = "./workspace";

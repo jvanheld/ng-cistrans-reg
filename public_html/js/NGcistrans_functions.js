@@ -40,11 +40,18 @@ $(document).ready(function () {
             url: "/ng-cistrans-reg/define_current_projet.php",
             data: {"currentProjet": $(this).attr("id") }
         });
-        //window.location = "/ng-cistrans-reg/display_possibilities.php";
     });
-    /*$("#create_project_button").click(function () {
-        window.location = "/ng-cistrans-reg/create_project_form.php";
-    });*/
+
+    $(".deleteFiles").click(function () {
+        if(confirm("Are you sure you want to delete this file ? " + $(this).attr("id"))){
+            $.ajax({
+                type:"POST",
+                url: "/ng-cistrans-reg/manage_files.php",
+                data: {"fileToDelete": $(this).attr("id") }
+            });
+        }
+        location.reload();
+    });
 
     $("#sample_table ").on("click", "#delColButton" ,function () {
 

@@ -63,23 +63,26 @@ $projects =array();
 
 foreach($rows as $row ) {
     $words_in_row = explode(":",$row);
-    array_push($projects,$words_in_row[1]);
+    array_push($projects,$words_in_row[0]);
 }
 
 if(empty($_POST["Name_project"]) ){
     trigger_error('Please enter a name project for create it', E_USER_NOTICE);
-    }else {
-        if (!in_array($_POST["Name_project"],$projects)){
+}else {
+        if (in_array($_POST["Name_project"],$projects)){
+            foreach($projects as $proj) {
+                echo $proj." <br> ";
+            }
             trigger_error('The name project is already use. Please choose another one.', E_USER_NOTICE);
         }else{
             $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
-            mkdir($pathFolder, 0755);//folder project
+            mkdir($pathFolder, 0777);//folder project
             $pathSubFolderData = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
-            mkdir($pathSubFolderData, 0755);//subfolder data
+            mkdir($pathSubFolderData, 0777);//subfolder data
             $pathSubFolderResults = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
-            mkdir($pathSubFolderResults, 0755);//subfolder results
+            mkdir($pathSubFolderResults, 0777);//subfolder results
             $pathSubFolderScripts = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
-            mkdir($pathSubFolderScripts, 0755);//subfolder scripts
+            mkdir($pathSubFolderScripts, 0777);//subfolder scripts
             echo "The creation of the project directory succeeded";
             echo "<br>";
 
@@ -98,8 +101,14 @@ if(empty($_POST["Name_project"]) ){
             fclose($htaccessfile);
 
             $usersList = "";
-            for ($i = 0; $i < count($_POST["User_access"]); $i++) {
-                $usersList = $usersList . $_POST["User_access"][$i] . " ";
+
+            //echo count($_POST["User_access"]);
+
+            if (!empty($_POST["User_access"])) {
+                echo "c'est 0";
+                for ($i = 0; $i < count($_POST["User_access"]); $i++) {
+                    $usersList = $usersList . $_POST["User_access"][$i] . " ";
+                }
             }
 
             $groupsfile = fopen("../access/groups", "a");

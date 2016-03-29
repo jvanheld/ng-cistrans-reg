@@ -25,6 +25,10 @@ session_start();
 	
     <h1>Welcome to ng-cistrans-reg project</h1>
 
+    <div class="logout">
+        <a href="logout.php">Logout</a>
+    </div>
+
     <fieldset>
         <legend>Access to your projects</legend>
         <ul>

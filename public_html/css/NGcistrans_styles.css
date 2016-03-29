@@ -42,6 +42,14 @@ a {
 
 }
 
+.logout {
+    text-align: right;
+}
+
+.go_back {
+    padding: 8px;
+}
+
 input[type="submit"]{
     background-color: #0080ff;
     border: solid;
@@ -127,12 +135,18 @@ fieldset{
     border-radius:8px;
 }
 
+th {
+    color: #0080ff;
+}
+
 form#form-yaml label {
 	display: block; /* La balise devient de type block. */
 	width: 300px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
 	float: left;
 }
-
+#files {
+    display: none; /*--masqué par défaut--*/
+}
 #sample_table input {
     width:180px;
 }

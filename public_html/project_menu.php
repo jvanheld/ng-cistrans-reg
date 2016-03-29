@@ -21,15 +21,19 @@ session_start();
 <!--    <link rel="stylesheet" href="/resources/demos/style.css">-->
 
 </head>
+<body>
 
 <h1>Welcome to the <?php echo $_SESSION["project"]?> project</h1>
-
 
 <div class="home-div">
     <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
 </div>
-<?php
 
+<div class="logout">
+    <a href="logout.php" >Logout</a>
+</div>
+
+<?php
 /* Check if the user is the owner of the project, in order to display owner-specific actions*/
 $txt_file = file_get_contents("../access/project_owner");
 $rows = explode("\n", $txt_file);
@@ -44,10 +48,10 @@ foreach ($rows as $row ) {
                 });
             </script>
 <?php }}} ?>
-
     <script>
         $(function() {
-            $( "#project_actions" ).tabs({
+            $( "#project_actions").tabs({
+                selected: -1,
                 beforeLoad: function( event, ui ) {
                     ui.jqXHR.fail(function() {
                         ui.panel.html(
@@ -56,18 +60,56 @@ foreach ($rows as $row ) {
                     });
                 }
             });
+
+            $( "#possibilities li :not('#show_files')" ).click(function() {
+                document.getElementById("files").style.display = "none";
+            });
+
+            $("#show_files").click(function(){
+                document.getElementById("files").style.display = "inline";
+            });
+
+            $("#show_files2").click(function(){
+                window.location = "/ng-cistrans-reg/manage_files2.php";
+            });
+
         });
     </script>
 
     <div class="toc_action_list" id="project_actions">
-        <ul>
+        <ul id="possibilities">
             <li><a href="possibility_upload_files.php">Upload new sequence files</a></li>
+            <li><a href="#files" id="show_files">Manage project files (version 1)</a></li>
+            <li><a href="manage_files2.php" id="show_files2">Manage project files (version 2)</a></li>
             <li><a href="form_write_yaml.php">Manage project descriptions</a></li>
             <li><a href="run_analysis.php">Run analysis</a></li>
         </ul>
-
     </div>
 
+<div id="files">
+
+    <h2>Manage project Files</h2>
+    <table class="nav_files">
+    <tr>
+        <th>File</th>
+    </tr>
+<?php
+$adresse=$_SESSION["path_project"] . "/data/" ;
+$dossier=Opendir($adresse);
+while ($Fichier = readdir($dossier))
+{
+    if ($Fichier != "." && $Fichier != ".." && $Fichier != ".htaccess") // Filtre antipoint !<br/>
+    {
+        // C'est juste en dessous qu'il y a eu les modifications. <br/>
+        echo '<tr><td><a href='.$adresse.$Fichier.' target="_blank">'.$Fichier.'</a></td>
+        <td><button class="deleteFiles" id="'.$Fichier.'">Delete<img src="jQuery/img/delete.png" height="12" width="12"></button></td></tr><BR>';
+    }
+}
+closedir($dossier);
+?>
+    </table>
+
+</div>
 
 </body>
 </html>
