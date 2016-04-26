@@ -51,6 +51,7 @@ foreach(array_keys($projects) as $key){
         echo "<li><a href='project_menu.php' class='Go' id=$key > $key </a></li>";
     }
 }
+//phpinfo();
 ?>
         </ul>
     </fieldset>
@@ -58,7 +59,6 @@ foreach(array_keys($projects) as $key){
 <div id="create_project">
     <a href="create_project_form.php">Create project</a>
 </div>
-
 
 </body>
 </html>

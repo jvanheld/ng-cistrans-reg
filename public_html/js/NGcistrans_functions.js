@@ -43,11 +43,11 @@ $(document).ready(function () {
     });
 
     $(".deleteFiles").click(function () {
-        if(confirm("Are you sure you want to delete this file ? " + $(this).attr("id"))){
+        if(confirm("Are you sure you want to delete this file ? " + $(this).closest("tr").children(".Sample_name").children("input").attr("value"))){
             $.ajax({
                 type:"POST",
                 url: "/ng-cistrans-reg/manage_files.php",
-                data: {"fileToDelete": $(this).attr("id") }
+                data: {"fileToDelete": $(this).closest("tr").children(".md5sum").children("input").attr("value") }
             });
         }
         location.reload();
@@ -80,12 +80,14 @@ $(document).ready(function () {
 
     $("#sample_table ").on("click","#action_deleteLine",function (){
         $(this).parents().eq(1).remove();
+        alert('Do you want to delete this sample project?');
     });
 
     $indexContributor = 1;
     $("#Contributor_table").on("click","#addContributor",function () {
         $indexContributor++;
-        var $newEle = $("#Contributor_table tr:eq(0)").clone().attr("id", "tr_Contributor"+ $indexContributor);
+        //var $newEle = $("#Contributor_table tr:eq(0)").clone().attr("id", "tr_Contributor"+ $indexContributor);
+        var $newEle = $("#Contributor_clone_td").clone().attr("id", "tr_Contributor"+ $indexContributor);
         $newEle.find("input").each(function() {
             $(this).val('').attr('id',"Contributor" + $indexContributor);
         }).end().appendTo("#Contributor_table");

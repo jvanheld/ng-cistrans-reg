@@ -23,7 +23,7 @@ session_start();
 </head>
 <body>
 
-<h1>Welcome to the <?php echo $_SESSION["project"]?> project</h1>
+<h1>Project: <?php echo $_SESSION["project"]?></h1>
 
 <div class="home-div">
     <button onclick="window.location = 'index.php';"><img src="jQuery/img/home.png" alt="Home" height="42" width="42"></button>
@@ -50,7 +50,7 @@ foreach ($rows as $row ) {
 <?php }}} ?>
     <script>
         $(function() {
-            $( "#project_actions").tabs({
+            $("#project_actions").tabs({
                 selected: -1,
                 beforeLoad: function( event, ui ) {
                     ui.jqXHR.fail(function() {
@@ -61,17 +61,6 @@ foreach ($rows as $row ) {
                 }
             });
 
-            $( "#possibilities li :not('#show_files')" ).click(function() {
-                document.getElementById("files").style.display = "none";
-            });
-
-            $("#show_files").click(function(){
-                document.getElementById("files").style.display = "inline";
-            });
-
-            $("#show_files2").click(function(){
-                window.location = "/ng-cistrans-reg/manage_files2.php";
-            });
 
         });
     </script>
@@ -79,8 +68,8 @@ foreach ($rows as $row ) {
     <div class="toc_action_list" id="project_actions">
         <ul id="possibilities">
             <li><a href="possibility_upload_files.php">Upload new sequence files</a></li>
-            <li><a href="#files" id="show_files">Manage project files (version 1)</a></li>
-            <li><a href="manage_files2.php" id="show_files2">Manage project files (version 2)</a></li>
+<!--            <li><a href="#files" id="show_files">Manage project files (version 1)</a></li>
+            <li><a href="manage_files2.php" id="show_files2">Manage project files (version 2)</a></li>-->
             <li><a href="form_write_yaml.php">Manage project descriptions</a></li>
             <li><a href="run_analysis.php">Run analysis</a></li>
         </ul>

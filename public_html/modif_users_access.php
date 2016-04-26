@@ -39,6 +39,7 @@ if (isset($_POST['revoke_user_access'])) {
     fclose($tmp_file);
     unlink("../access/groups");
     rename("../access/tmp_groups","../access/groups");
+    chmod("../access/groups",0777);
 }
 
 //Part about add some users
@@ -70,6 +71,8 @@ if (isset($_POST['add_user_access'])) {
     fclose($tmp_file);
     unlink("../access/groups");
     rename("../access/tmp_groups","../access/groups");
+    chmod("../access/groups",0777);
+
 }
 
 ?>

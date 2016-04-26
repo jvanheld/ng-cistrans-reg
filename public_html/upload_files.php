@@ -40,9 +40,15 @@ session_start();
                 'simUploadLimit' :0,
                 'onUploadStart' : function() {
                     $('#file_upload').uploadify('settings', 'formData', {
-                        'target-project': '<?php echo $_SESSION["path_project"]?>'
+                        'target-project': '<?php echo $_SESSION["path_project"]?>',
+                        'name-project' : '<?php echo $_SESSION["project"]?>'
                     });
-                }})
+                }
+                'onUploadError' : function(file, errorCode, errorMsg, errorString) {
+                    alert('The file ' + file.name + ' could not be uploaded: ' + errorString);
+                }
+            })
+
             ;
         });
 

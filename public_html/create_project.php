@@ -75,17 +75,23 @@ if(empty($_POST["Name_project"]) ){
             }
             trigger_error('The name project is already use. Please choose another one.', E_USER_NOTICE);
         }else{
+            $oldmask = umask(0);
             $pathFolder = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"];
             mkdir($pathFolder, 0777);//folder project
+            $pathFolderGeneReg = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/gene-regulation";
+            mkdir($pathFolderGeneReg, 0777);//folder for scripts from the git repository gene-regulation https://github.com/rioualen/gene-regulation.git
+            //command execute by php for make a clone of the git repository gene-regulation https://github.com/rioualen/gene-regulation.git
+            $recup = shell_exec('git clone https://github.com/rioualen/gene-regulation.git ./workspace/ng-cistrans-reg_projects/' . $_POST["Name_project"] ."/gene-regulation");
             $pathSubFolderData = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/data";
             mkdir($pathSubFolderData, 0777);//subfolder data
             $pathSubFolderResults = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/results";
             mkdir($pathSubFolderResults, 0777);//subfolder results
-            $pathSubFolderScripts = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/scripts";
-            mkdir($pathSubFolderScripts, 0777);//subfolder scripts
+            $pathSubFolderMetadata = "./workspace/ng-cistrans-reg_projects/" . $_POST["Name_project"] . "/metadata";
+            mkdir($pathSubFolderMetadata, 0777);//subfolder metadata
+            umask($oldmask);
+
             echo "The creation of the project directory succeeded";
             echo "<br>";
-
 
             $htaccessfile = fopen($pathFolder . "/.htaccess", "w+");
 
@@ -102,10 +108,7 @@ if(empty($_POST["Name_project"]) ){
 
             $usersList = "";
 
-            //echo count($_POST["User_access"]);
-
             if (!empty($_POST["User_access"])) {
-                echo "c'est 0";
                 for ($i = 0; $i < count($_POST["User_access"]); $i++) {
                     $usersList = $usersList . $_POST["User_access"][$i] . " ";
                 }
@@ -113,7 +116,7 @@ if(empty($_POST["Name_project"]) ){
 
             $groupsfile = fopen("../access/groups", "a");
 
-            $contentsgroups = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'] . " " . $usersList;
+            $contentsgroups = "\n" . $_POST["Name_project"] . ": " . $_SERVER['REMOTE_USER'] . " " . rtrim($usersList," ");
 
             fwrite($groupsfile, $contentsgroups);
 
@@ -126,7 +129,19 @@ if(empty($_POST["Name_project"]) ){
             fwrite($ownersfile, $contentsowners);
 
             fclose($ownersfile);
+
+            echo " Database and table will be created <br>";
+
+            $db = new SQLite3( $pathFolder . "/" . $_POST["Name_project"] .".db");
+
+            $db->exec('CREATE TABLE files (md5sum STRING, name STRING)');
+
+            $db->exec('CREATE UNIQUE INDEX md5sum_index ON files (md5sum)');
+
+            echo "Database and table has been created <br>";
+
         }
+
 }
 
 ?>

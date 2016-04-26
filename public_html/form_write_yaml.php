@@ -3,23 +3,33 @@ session_start();
 /*session is started if you don't write this line can't use $_Session  global variable*/
 ?>
 
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>NG-cistrans-reg Project</title>
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--	<head>-->
+<!--		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
+<!--		<title>NG-cistrans-reg Project</title>-->
 
-		<link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
+<!--		<link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">-->
 
         <script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
 
-	</head>
+<!--	</head>-->
 
-	<body>
-		<h2>Form annotations</h2>
+		<h2>Sample descriptions</h2>
 
         <!-- Check if there are already files in the project and adapt the menu accordingly -->
         <?php if (count(scandir($_SESSION["path_project"] . "/data")) != 2):?>
+        <?php
+            $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] . ".db");// open the project database
+            $results = $db->query('SELECT * FROM files');//make request to get all md5sum and name who correspond to files uploaded
+            $filesTable = array();//create an array
+            $i = 0;
+            while($res = $results->fetchArray(SQLITE3_ASSOC)){// Store all results in an array
+                $filesTable[$i]['md5sum'] = $res['md5sum'];
+                $filesTable[$i]['name'] = $res['name'];
+                $i++;
+            }
+            ?>
 		<div>
 			<form id="form-yaml" action="write_yaml.php"  method="post">
 				
@@ -72,6 +82,7 @@ session_start();
 				<table class="dynatable" id="sample_table">
 				<thead>
 					<tr>
+                        <th><a href="#" class="info">md5sum<span>Is the MD5 footprint file</span></a></th>
 						<th><a href="#" class="info">Sample_name<span>An arbitrary and unique identifier for each sample. This information will not appear in the final records and is only used as an internal reference. Each row represents a GEO Sample record.</span></a></th>
                         <th><a href="#" class="info">Title<span>Unique title that describes the Sample.</span></a></th>
 						<th><a href="#" class="info">Source_name<span>Briefly identify the biological material e.g., vastus lateralis muscle.</span></a></th>
@@ -86,7 +97,8 @@ session_start();
 				
 				<tbody>
                 <tr id="Data_clone" >
-                    <td class="Sample_name"><input id="Sample_name" type="text" name="Samples_information[Sample_name][]" /></td>
+                    <td class="md5sum"><input id="md5sum" type="text" name="Samples_information[md5sum][]" readonly/></td>
+                    <td class="Sample_name"><input id="Sample_name" type="text" name="Samples_information[Sample_name][]" readonly/></td>
                     <td class="Title"><input id="Title" type="text" name="Samples_information[Title][]" /></td>
                     <td class="Source"><input id="Source" type="text" name="Samples_information[Source][]" /></td>
                     <td class="Organism"><input id="Organism" type="text" name="Samples_information[Organism][]" /></td>
@@ -94,13 +106,16 @@ session_start();
                     <td class="Description"><input id="Description" type="text" name="Samples_information[Description][]" /></td>
                     <td class="Processed_data_file"><input id="Processed_data_file" type="text" name="Samples_information[Processed_data_file][]" /></td>
                     <td class="Raw_file"><input id="Raw_file" type="text" name="Samples_information[Raw_file][]" /></td>
-                    <td id="action_function"><a href="#!" id="action_deleteLine">Delete line</a>
+<!--                    <td id="action_function"><a href="#!" id="action_deleteLine">Delete sample</a>-->
+                    <td id="action_function"><a href="#!" class="deleteFiles">Delete sample</a>
+
                         <button form="form-yaml" id="addColButton" type="button">Add Column</button>
                         <button form="form-yaml" id="delColButton" type="button">Delete Column</button>
                     </td>
                 </tr>
 					<tr id="Data1" >
-						<td class="Sample_name"><input id="Sample_name1" type="text" name="Samples_information[Sample_name][]" /></td>
+                        <td class="md5sum"><input id="md5sum1" type="text" name="Samples_information[md5sum][]" readonly/></td>
+                        <td class="Sample_name" id="toto"><input id="Sample_name1" type="text" name="Samples_information[Sample_name][]" readonly/></td>
 						<td class="Title"><input id="Title1" type="text" name="Samples_information[Title][]" /></td>
 						<td class="Source"><input id="Source1" type="text" name="Samples_information[Source][]" /></td>
 						<td class="Organism"><input id="Organism1" type="text" name="Samples_information[Organism][]" /></td>
@@ -108,18 +123,19 @@ session_start();
                         <td class="Description"><input id="Description1" type="text" name="Samples_information[Description][]" /></td>
                         <td class="Processed_data_file"><input id="Processed_data_file1" type="text" name="Samples_information[Processed_data_file][]" /></td>
                         <td class="Raw_file"><input id="Raw_file1" type="text" name="Samples_information[Raw_file][]" /></td>
-                        <td id="action_function"><a href="#!" id="action_deleteLine">Delete line</a>
+<!--                        <td id="action_function"><a href="#!" id="action_deleteLine">Delete sample</a>-->
+                        <td id="action_function"><a href="#!" class="deleteFiles">Delete sample</a>
                             <button form="form-yaml" id="addColButton" type="button">Add Column</button>
 							<button form="form-yaml" id="delColButton" type="button">Delete Column</button>
 						</td>
 					</tr>
 				</tbody>
 				
-				<tfoot>
+				<!--<tfoot> Now we make table in function of uploaded files in the current project
 					<tr>
                         <th colspan="8"><a href="#!" id="action_addLine"> Add line</a></th>
 					</tr>
-				</tfoot>
+				</tfoot>-->
 				
 				</table>
 				</fieldset>
@@ -144,21 +160,21 @@ session_start();
 				<input size= '150' type='text' name="Protocols_information[Library_strategy]" id="Library_strategy" value="" ><br>
 				</fieldset>
 
-                <fieldset id="hidden_info">
+                <!--<fieldset id="hidden_info">
                     <legend>Data processing pipeline</legend>
 
                     <label for= "Genome_build"><a href="#" class="info">Genome_build<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Genome_build]" id="Genome_build" value="" ><br>
 
-                    <!--<label for= "Data_files_format_info"><a href="#" class="info">Processed_data_files_format_and_content<span>.</span></a></label>
+                    <label for= "Data_files_format_info"><a href="#" class="info">Processed_data_files_format_and_content<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Data_files_format_info][]" id="Data_files_format_info" value="" ><br>
 
                     <label for= "Data_processing_step"><a href="#" class="info">Data_processing_step<span>.</span></a></label>
                     <input size= '150' type='text' name="Pipeline_information[Data_processing_step][]" id="Data_processing_step" value="" ><br>
 
--->
 
-                </fieldset>
+
+                </fieldset>-->
 
 			<input type="submit" value="Valider">
 
@@ -188,7 +204,7 @@ session_start();
                                             $(this).val('').attr('id', "Contributor" + $indexContributor);
                                         }).end().appendTo("#Contributor_table");
                                     }
-                                    if ($key2 == "Sample_name") {
+                                    /*if ($key2 == "Sample_name") { This is made by the load_file_id_uploaded() function
                                         $indexSample++;
                                         var $newTr = $("#sample_table tr:eq(1)").clone().attr("id", "Data" + $indexSample);
                                         $newTr.find("input").each(function () {
@@ -196,7 +212,7 @@ session_start();
                                                 return id + $indexSample
                                             });
                                         }).end().appendTo("#sample_table");
-                                    }
+                                    }*/
 
                                     $countOfLineToAdd--;
                                 }
@@ -210,7 +226,7 @@ session_start();
                                     }
                                     else if ($("#" + $key2 + $boum).length) {
                                         $("#" + $key2 + $boum).val(data[$key1][$key2][$key3]);
-                                        $("#" + $key2 + $boum).attr("value",data[$key1][$key2][$key3]);
+                                        $("#" + $key2 + $boum).attr("value", data[$key1][$key2][$key3]);
                                         $("#" + $key2 + $boum).attr("placeholder", data[$key1][$key2][$key3]);
 
                                     }
@@ -250,17 +266,45 @@ session_start();
                         }
                         })
                 };
-
-
-
         </script>
 
-        <?php if (file_exists($_SESSION["path_project"] . "/data" . "/description.yaml"))?>
+        <script type="text/javascript">
+                function load_file_id_uploaded(){
+                    var tableId = <?php echo json_encode($filesTable)?>;
+                    //first create lines
+                    var $numberOfLineToAdd = tableId.length -1 ;
+                    while ($numberOfLineToAdd != 0) {
+                            $indexSample++;
+                            var $newTr = $("#sample_table tr:eq(1)").clone().attr("id", "Data" + $indexSample);
+                            $newTr.find("input").each(function () {
+                                $(this).val('').attr("id", function (_, id) {
+                                    return id + $indexSample
+                                });
+                            }).end().appendTo("#sample_table");
+
+                        $numberOfLineToAdd--;
+                    }
+                    var indexFile = 0;
+                    $("td.md5sum input:not(td.md5sum input:eq(0))").each(function(){
+                        $(this).val(tableId[indexFile]["md5sum"]);
+                        $(this).attr("placeholder",tableId[indexFile]["md5sum"]);
+                        $(this).attr("value",tableId[indexFile]["md5sum"]);
+                        indexFile++;
+                    });
+                    var indexFile = 0;
+                    $("td.Sample_name input:not(td.Sample_name input:eq(0))").each(function(){
+                        $(this).val(tableId[indexFile]["name"]);
+                        $(this).attr("value",tableId[indexFile]["name"]);
+                        $(this).attr("placeholder",tableId[indexFile]["name"]);
+                        indexFile++;
+                    });
+
+                };
+        </script>
+        <?php if(!empty($filesTable)){
+            echo "<script type=\"text/javascript\">load_file_id_uploaded()</script>";
+        }?>
+
+
+        <?php if (file_exists($_SESSION["path_project"] . "/metadata" . "/description.yaml"))?>
         <script type="text/javascript">load_yaml()</script>
-
-
-
-
-
-	</body>
-</html>
