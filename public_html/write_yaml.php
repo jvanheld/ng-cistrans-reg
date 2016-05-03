@@ -10,7 +10,6 @@ session_start();
 <!--
 		<link rel="stylesheet" type="text/css" href="mise_en_page.css">
 -->
-
 	</head>
 
 	<body>
@@ -65,28 +64,28 @@ if (empty($_POST["Samples_information"]["Sample_name"][0])){
 //}
 
 //Part for write all information in a YAML file.
-$filename = $_SESSION["path_project"] . "/data" . "/description.yaml";
+$filename = $_SESSION["path_project"] . "/data" . "/description.yml";
 $res = yaml_emit_file($filename, $_POST, $encoding = YAML_UTF8_ENCODING );
 
 //Part for write 3 tables in the database project.
 $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] .".db");//open database project
 
 //Table Serie_descriptions = $_POST["Series_information"]
-$db->exec('DROP TABLE IF EXISTS Serie_descriptions');//remove old table
+$db->exec('DROP TABLE IF EXISTS serie_descriptions');//remove old table
 
-$db->exec('CREATE TABLE Serie_descriptions (feature STRING, value STRING)');
+$db->exec('CREATE TABLE serie_descriptions (feature STRING, value STRING)');
 foreach($_POST["Series_information"] as $key => $value){
     if (is_array($value)){// if is array we have to insert all value contained by this array
         foreach($value as $key2 => $value2){
             if(empty($value2)){//skip the empty line
                 continue;
             }else{
-                $db->exec("INSERT INTO Serie_descriptions (feature, value) VALUES ('$key','$value2')");//request to insert a new line who correspond to the new description
+                $db->exec("INSERT INTO serie_descriptions (feature, value) VALUES ('$key','$value2')");//request to insert a new line who correspond to the new description
             }
         }
-        continue;
+        //continue;
     }else{
-        $db->exec("INSERT INTO Serie_descriptions (feature, value) VALUES ('$key','$value')");//request to insert a new line who correspond to the new description
+        $db->exec("INSERT INTO serie_descriptions (feature, value) VALUES ('$key','$value')");//request to insert a new line who correspond to the new description
     }
 }
 
@@ -121,21 +120,21 @@ for($sample = 1; $sample < count($_POST["Samples_information"]["md5sum"]); $samp
 }
 
 //Table Protocol_descriptions = $_POST["Protocols_information"]
-$db->exec('DROP TABLE IF EXISTS Protocol_descriptions');//remove old table
+$db->exec('DROP TABLE IF EXISTS protocol_descriptions');//remove old table
 
-$db->exec('CREATE TABLE Protocol_descriptions (feature STRING, value STRING)');
+$db->exec('CREATE TABLE protocol_descriptions (feature STRING, value STRING)');
 foreach($_POST["Protocols_information"] as $key => $value){
     if (is_array($value)){// if is array we have to insert all value contained by this array
         foreach($value as $key2 => $value2){
             if(empty($value2)){//skip the empty line
                 continue;
             }else{
-                $db->exec("INSERT INTO Protocol_descriptions (feature, value) VALUES ('$key','$value2')");//request to insert a new line who correspond to the new description
+                $db->exec("INSERT INTO protocol_descriptions (feature, value) VALUES ('$key','$value2')");//request to insert a new line who correspond to the new description
             }
         }
-        continue;
+        //continue;
     }else{
-        $db->exec("INSERT INTO Protocol_descriptions (feature, value) VALUES ('$key','$value')");//request to insert a new line who correspond to the new description
+        $db->exec("INSERT INTO protocol_descriptions (feature, value) VALUES ('$key','$value')");//request to insert a new line who correspond to the new description
     }
 }
 

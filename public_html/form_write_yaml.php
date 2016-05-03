@@ -20,7 +20,10 @@ session_start();
         <!-- Check if there are already files in the project and adapt the menu accordingly -->
         <?php if (count(scandir($_SESSION["path_project"] . "/data")) != 2):?>
         <?php
+            //Part about files uploaded
+            //input text on mode read only are filled automatically
             $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] . ".db");// open the project database
+
             $results = $db->query('SELECT * FROM files');//make request to get all md5sum and name who correspond to files uploaded
             $filesTable = array();//create an array
             $i = 0;
@@ -29,9 +32,32 @@ session_start();
                 $filesTable[$i]['name'] = $res['name'];
                 $i++;
             }
+
+            //Part about Data type accepted values are get by parsing config_files/supported_data_types.yml
+            //$dataTypes = json_encode(yaml_parse_file("../config_files/supported_data_types.yml"));
+            $dataTypes = yaml_parse_file("../config_files/supported_data_types.yml");
+
+            /*foreach($dataTypes as $dataType => $description){
+                echo "toto";
+                echo $dataType;
+                echo $description;
+            }*/
+            //Part about groups sample
+            /*$results2 = $db->query('SELECT * FROM sqlite_master WHERE name ="grouping_table" and TYPE="table"');//make request to get all md5sum, name and groups
+            $groupsTable = array();//create an array
+            $i = 0;
+            while($res2 = $results2->fetchArray(SQLITE3_ASSOC)){// Store all results in an array
+                var_dump($res2);
+                $groupsTable[$i]['md5sum'] = $res2['md5sum'];
+                $groupsTable[$i]['Sample_name'] = $res2['Sample_name'];
+                $groupsTable[$i]['Groups'] = $res2['Groups'];
+                $i++;
+            }*/
+
+
             ?>
 		<div>
-			<form id="form-yaml" action="write_yaml.php"  method="post">
+			<form id="form-descriptions" action="write_yaml.php"  method="post">
 				
 				<fieldset>
 				    <legend>Series</legend>
@@ -84,6 +110,7 @@ session_start();
 					<tr>
                         <th><a href="#" class="info">md5sum<span>Is the MD5 footprint file</span></a></th>
 						<th><a href="#" class="info">Sample_name<span>An arbitrary and unique identifier for each sample. This information will not appear in the final records and is only used as an internal reference. Each row represents a GEO Sample record.</span></a></th>
+<!--                        <th><a href="#" class="info">Data_type<span>Data from ChIP-seq or RNA-seq</span></a></th>-->
                         <th><a href="#" class="info">Title<span>Unique title that describes the Sample.</span></a></th>
 						<th><a href="#" class="info">Source_name<span>Briefly identify the biological material e.g., vastus lateralis muscle.</span></a></th>
 						<th><a href="#" class="info">Organism<span>Identify the organism(s) from which the sequences were derived.</span></a></th>
@@ -99,6 +126,7 @@ session_start();
                 <tr id="Data_clone" >
                     <td class="md5sum"><input id="md5sum" type="text" name="Samples_information[md5sum][]" readonly/></td>
                     <td class="Sample_name"><input id="Sample_name" type="text" name="Samples_information[Sample_name][]" readonly/></td>
+<!--                    <td class="Data_type"><input id="Data_type" type="text" name="Samples_information[Data_type][]" pattern="RNA-seq|ChIP-seq" placeholder="RNA-seq or ChIP-seq"/></td>-->
                     <td class="Title"><input id="Title" type="text" name="Samples_information[Title][]" /></td>
                     <td class="Source"><input id="Source" type="text" name="Samples_information[Source][]" /></td>
                     <td class="Organism"><input id="Organism" type="text" name="Samples_information[Organism][]" /></td>
@@ -109,14 +137,14 @@ session_start();
 <!--                    <td id="action_function"><a href="#!" id="action_deleteLine">Delete sample</a>-->
                     <td id="action_function"><a href="#!" class="deleteFiles">Delete sample</a>
 
-                        <button form="form-yaml" id="addColButton" type="button">Add Column</button>
-                        <button form="form-yaml" id="delColButton" type="button">Delete Column</button>
+                        <button form="form-descriptions" id="addColButton" type="button">Add Column</button>
+                        <button form="form-descriptions" id="delColButton" type="button">Delete Column</button>
                     </td>
                 </tr>
 					<tr id="Data1" >
                         <td class="md5sum"><input id="md5sum1" type="text" name="Samples_information[md5sum][]" readonly/></td>
                         <td class="Sample_name" id="toto"><input id="Sample_name1" type="text" name="Samples_information[Sample_name][]" readonly/></td>
-						<td class="Title"><input id="Title1" type="text" name="Samples_information[Title][]" /></td>
+<!--                        <td class="Data_type"><input id="Data_type1" type="text" name="Samples_information[Data_type][]" pattern="RNA-seq|ChIP-seq" placeholder="RNA-seq or ChIP-seq" /></td>-->                        <td class="Title"><input id="Title1" type="text" name="Samples_information[Title][]" /></td>
 						<td class="Source"><input id="Source1" type="text" name="Samples_information[Source][]" /></td>
 						<td class="Organism"><input id="Organism1" type="text" name="Samples_information[Organism][]" /></td>
                         <td class="Molecule"><input id="Molecule1" type="text" name="Samples_information[Molecule][]" /></td>
@@ -125,8 +153,8 @@ session_start();
                         <td class="Raw_file"><input id="Raw_file1" type="text" name="Samples_information[Raw_file][]" /></td>
 <!--                        <td id="action_function"><a href="#!" id="action_deleteLine">Delete sample</a>-->
                         <td id="action_function"><a href="#!" class="deleteFiles">Delete sample</a>
-                            <button form="form-yaml" id="addColButton" type="button">Add Column</button>
-							<button form="form-yaml" id="delColButton" type="button">Delete Column</button>
+                            <button form="form-descriptions" id="addColButton" type="button">Add Column</button>
+							<button form="form-descriptions" id="delColButton" type="button">Delete Column</button>
 						</td>
 					</tr>
 				</tbody>
@@ -141,7 +169,7 @@ session_start();
 				</fieldset>
 				
 				<fieldset>
-				    <legend>Protocols</legend>
+                    <legend>Protocol</legend>
 				<p> Any of the protocols below which are applicable to only a subset of Samples should be included as additional columns of the SAMPLES section instead.</p>
 				
 				<label for= "Growth_protocol"><a href="#" class="info">Growth_protocol<span>[Optional]  Describe the conditions that were used to grow or maintain organisms or cells prior to extract preparation.</span></a></label>
@@ -179,6 +207,48 @@ session_start();
 			<input type="submit" value="Valider">
 
 			</form>
+
+            <h2>Sample grouping</h2>
+
+            <form id="form-groups" action="define_groups.php" method="post">
+                <fieldset>
+                    <legend>Group definitions</legend>
+                <table id="grouping">
+                    <tr>
+                        <th>md5sum</th>
+                        <th>Sample_name</th>
+                        <th>Groups</th>
+                    </tr>
+                    <tr id="grouping_clone">
+                        <td class="md5sum2"><input type="text" name="md5sum[]" readonly/></td>
+                        <td class="Sample_name2"><input type="text" name="Sample_name[]" readonly/></td>
+                        <td><input type="text" name="groups[]"></td>
+
+                    </tr>
+                    <tr id="grouping1">
+                        <td class="md5sum2"><input type="text" name="md5sum[]" readonly/></td>
+                        <td class="Sample_name2"><input type="text" name="Sample_name[]" readonly/></td>
+                        <td><input type="text" name="Groups[]"></td>
+
+                    </tr>
+                </table>
+
+                <p>This part is devoted to the definition of "groups".Whatever the type of data samples corresponding to a group, a condition.
+                    For example, in ChIP-seq there are "Chip" or "treat" and "control" or "input".
+                    In RNA-seq there are different conditions such as "KOnameGene" or "WildType". A sample can belong to several groups.
+                    Please choose the name of groups wisely, without blankspace and separate by a comma.</p>
+
+                    </fieldset>
+                <input type="submit" value="Valider">
+
+            </form>
+
+            <fieldset>
+                <legend>Sample-Group assignation</legend>
+
+            </fieldset>
+
+            <h2>Design description</h2>
 		</div>
         <?php else:?>
 
@@ -189,7 +259,7 @@ session_start();
         <script type="text/javascript">
                 function load_yaml(){
                     $.getScript('js/NGcistrans_functions.js', function() {
-                    var data =  <?php echo json_encode(yaml_parse_file($_SESSION["path_project"] . "/data" . "/description.yaml")) ?> ;
+                    var data =  <?php echo json_encode(yaml_parse_file($_SESSION["path_project"] . "/data" . "/description.yml")) ?> ;
                     //on arrive a lire le yaml en le convertissant en json
                     for ( var $key1 in data ) {
                         for (var $key2 in data[$key1]) {
@@ -282,8 +352,12 @@ session_start();
                                 });
                             }).end().appendTo("#sample_table");
 
+                            $("#grouping_clone").clone().attr("id", "grouping" + $indexSample).appendTo("#grouping");
+
+
                         $numberOfLineToAdd--;
                     }
+                    //Fill these lines
                     var indexFile = 0;
                     $("td.md5sum input:not(td.md5sum input:eq(0))").each(function(){
                         $(this).val(tableId[indexFile]["md5sum"]);
@@ -298,6 +372,20 @@ session_start();
                         $(this).attr("placeholder",tableId[indexFile]["name"]);
                         indexFile++;
                     });
+                    var indexFile = 0;
+                    $("td.md5sum2 input:not(td.md5sum2 input:eq(0))").each(function(){
+                        $(this).val(tableId[indexFile]["md5sum"]);
+                        $(this).attr("value",tableId[indexFile]["md5sum"]);
+                        $(this).attr("placeholder",tableId[indexFile]["md5sum"]);
+                        indexFile++;
+                    });
+                    var indexFile = 0;
+                    $("td.Sample_name2 input:not(td.Sample_name2 input:eq(0))").each(function(){
+                        $(this).val(tableId[indexFile]["name"]);
+                        $(this).attr("value",tableId[indexFile]["name"]);
+                        $(this).attr("placeholder",tableId[indexFile]["name"]);
+                        indexFile++;
+                    });
 
                 };
         </script>
@@ -306,5 +394,5 @@ session_start();
         }?>
 
 
-        <?php if (file_exists($_SESSION["path_project"] . "/metadata" . "/description.yaml"))?>
+        <?php if (file_exists($_SESSION["path_project"] . "/metadata" . "/description.yml"))?>
         <script type="text/javascript">load_yaml()</script>

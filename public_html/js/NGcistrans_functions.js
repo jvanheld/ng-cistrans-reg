@@ -6,10 +6,10 @@ $(document).ready(function () {
 		var $columnName = window.prompt("Enter Column name", "");
 
         if ($columnName == null){
-            //$("#sample_table ").stop(true,true);
+
             return;
         }
-        if (! /^[a-zA-Z0-9]+$/.test($columnName)){
+        if (! /^[a-zA-Z0-9]+$/.test($columnName)){ // check if the string write by user is available
             return;
         }
 
@@ -60,8 +60,9 @@ $(document).ready(function () {
         if (! /^[a-zA-Z0-9]+$/.test($columnName)){ // check if the string write by user is available
             return;
         }
-
-        $("th:contains(" + $columnName + ")" ).remove(); //delete the title
+        $("th").filter(function() {
+            return $(this).text() === $columnName;
+        }).remove(); //delete the title
         $("td").find('input[name="' + $columnName + '[]"]').remove(); // delete the input element
         $("." + $columnName +"").remove(); //delete the td element
 

@@ -1,0 +1,6 @@
+---
+ChIP-seq:
+  description: Chromatin Immunoprecipitation sequencing, is a method used to identify sites where there are protein interactions with DNA.
+RNA-seq:
+  description: RNA sequencing, is a method used to reveal the presence and quantity of RNA in a biological sample at a given moment in time.
+...

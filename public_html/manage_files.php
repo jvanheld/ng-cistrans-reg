@@ -6,7 +6,7 @@ session_start();
 $folderToDelete = $_SESSION["path_project"] . "/data/" . $_POST["fileToDelete"];
 $fileToDelete = $_SESSION["path_project"] . "/data/" . $_POST["fileToDelete"] . "/" .$_POST["fileToDelete"];
 $fileName = $_POST["fileToDelete"];
-unlink($fileToDelete);//delte file
+unlink($fileToDelete);//delete file
 rmdir($folderToDelete);//delete folder
 
 //Part concerned by delete files in database project

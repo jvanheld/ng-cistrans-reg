@@ -2,18 +2,22 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6e5109f8-0db8-4b4b-8ae6-0ff972082411" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/config_files/supported_data_types.yml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/public_html/description.yaml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/create_project.php" afterPath="$PROJECT_DIR$/public_html/create_project.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/css/uploadify.css" afterPath="$PROJECT_DIR$/public_html/css/uploadify.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/css/NGcistrans_styles.css" afterPath="$PROJECT_DIR$/public_html/css/NGcistrans_styles.css" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/define_current_projet.php" afterPath="$PROJECT_DIR$/public_html/define_current_projet.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/form_write_yaml.php" afterPath="$PROJECT_DIR$/public_html/form_write_yaml.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/index.php" afterPath="$PROJECT_DIR$/public_html/index.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/js/NGcistrans_functions.js" afterPath="$PROJECT_DIR$/public_html/js/NGcistrans_functions.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/logout.php" afterPath="$PROJECT_DIR$/public_html/logout.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/manage_files.php" afterPath="$PROJECT_DIR$/public_html/manage_files.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/manage_files2.php" afterPath="$PROJECT_DIR$/public_html/manage_files2.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/modif_users_access.php" afterPath="$PROJECT_DIR$/public_html/modif_users_access.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/possibility_upload_files.php" afterPath="$PROJECT_DIR$/public_html/possibility_upload_files.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/project_menu.php" afterPath="$PROJECT_DIR$/public_html/project_menu.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/test.php" afterPath="$PROJECT_DIR$/public_html/test.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/upload_files.php" afterPath="$PROJECT_DIR$/public_html/upload_files.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/uploadify.php" afterPath="$PROJECT_DIR$/public_html/uploadify.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public_html/write_yaml.php" afterPath="$PROJECT_DIR$/public_html/write_yaml.php" />
     </list>
     <ignored path="ng-cistrans-reg.iws" />
@@ -48,30 +52,7 @@
     <favorites_list name="ng-cistrans-reg" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="index.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/public_html/index.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-40.0">
-              <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="project_menu.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/public_html/project_menu.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.73190045">
-              <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
-              <folding>
-                <marker date="1460364119579" expanded="true" signature="3315:3526" placeholder="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -87,11 +68,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public_html/jQuery/jQuery-File-Upload-9.11.2/js/jquery.fileupload-angular.js" />
-        <option value="$PROJECT_DIR$/public_html/jQuery/jQuery-File-Upload-9.11.2/js/jquery.fileupload-process.js" />
-        <option value="$PROJECT_DIR$/public_html/jQuery/jQuery-File-Upload-9.11.2/js/jquery.fileupload-ui.js" />
-        <option value="$PROJECT_DIR$/public_html/up_test_files.php" />
-        <option value="$PROJECT_DIR$/public_html/up_test.html" />
         <option value="$PROJECT_DIR$/public_html/up_test_uploadify.html" />
         <option value="$PROJECT_DIR$/public_html/up_test_uploadify.php" />
         <option value="$PROJECT_DIR$/public_html/mise_en_page.css" />
@@ -117,7 +93,6 @@
         <option value="$PROJECT_DIR$/public_html/define_current_projet.php" />
         <option value="$PROJECT_DIR$/config_files/logout.php" />
         <option value="$PROJECT_DIR$/public_html/show_files.php" />
-        <option value="$PROJECT_DIR$/public_html/css/NGcistrans_styles.css" />
         <option value="$PROJECT_DIR$/public_html/manage_files2.php" />
         <option value="$PROJECT_DIR$/public_html/modif_users_access.php" />
         <option value="$PROJECT_DIR$/public_html/possibility_manage_acces_project.php" />
@@ -127,17 +102,23 @@
         <option value="$PROJECT_DIR$/public_html/ceevee10/index.html" />
         <option value="$PROJECT_DIR$/public_html/ceevee10/css/layout.css" />
         <option value="$PROJECT_DIR$/public_html/css/uploadify.css" />
-        <option value="$PROJECT_DIR$/public_html/workspace/ng-cistrans-reg_projects/toto/data/description.yaml" />
         <option value="$PROJECT_DIR$/public_html/index.php" />
         <option value="$PROJECT_DIR$/public_html/project_menu.php" />
-        <option value="$PROJECT_DIR$/public_html/js/NGcistrans_functions.js" />
         <option value="$PROJECT_DIR$/public_html/create_project.php" />
         <option value="$PROJECT_DIR$/public_html/uploadify.php" />
-        <option value="$PROJECT_DIR$/public_html/manage_files.php" />
-        <option value="$PROJECT_DIR$/access/groups" />
+        <option value="$PROJECT_DIR$/public_html/workspace/ng-cistrans-reg_projects/toto/data/description.yaml" />
+        <option value="$PROJECT_DIR$/public_html/css/NGcistrans_styles.css" />
         <option value="$PROJECT_DIR$/access/project_owner" />
-        <option value="$PROJECT_DIR$/public_html/form_write_yaml.php" />
+        <option value="$PROJECT_DIR$/access/groups" />
+        <option value="$PROJECT_DIR$/public_html/define_groups.php" />
         <option value="$PROJECT_DIR$/public_html/write_yaml.php" />
+        <option value="$PROJECT_DIR$/config_files/supported_workflows.yml" />
+        <option value="$PROJECT_DIR$/public_html/workspace/ng-cistrans-reg_projects/toto/data/description.yml" />
+        <option value="$PROJECT_DIR$/config_files/supported_sata_types.yml" />
+        <option value="$PROJECT_DIR$/config_files/supported_data_types.yml" />
+        <option value="$PROJECT_DIR$/public_html/manage_files.php" />
+        <option value="$PROJECT_DIR$/public_html/form_write_yaml.php" />
+        <option value="$PROJECT_DIR$/public_html/js/NGcistrans_functions.js" />
       </list>
     </option>
   </component>
@@ -151,10 +132,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="1919" />
+    <option name="x" value="1920" />
     <option name="y" value="144" />
-    <option name="width" value="1922" />
-    <option name="height" value="1033" />
+    <option name="width" value="1920" />
+    <option name="height" value="1032" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -218,6 +199,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Project Files" />
@@ -271,60 +253,13 @@
               <option name="myItemId" value="workspace" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-          </PATH>
-          <PATH>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="public_html" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ng-cistrans-reg" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="access" />
+              <option name="myItemId" value="ng-cistrans-reg_projects" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -368,6 +303,9 @@
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
+      <method />
+    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
       <method />
@@ -393,15 +331,28 @@
       <envs />
       <method />
     </configuration>
+    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
+      <node-options />
+      <working-directory>$PROJECT_DIR$</working-directory>
+      <pass-parent-env>true</pass-parent-env>
+      <envs />
+      <ui>bdd</ui>
+      <extra-mocha-options />
+      <test-kind>DIRECTORY</test-kind>
+      <test-directory />
+      <recursive>false</recursive>
+      <method />
+    </configuration>
     <configuration default="false" name="function.js" type="NodeJSConfigurationType" factoryName="Node.js" path-to-js-file="function.js" working-dir="$PROJECT_DIR$/public_html/js">
       <method />
     </configuration>
-    <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
-      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html (2)" />
-      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.up_test.html" />
-      <item index="3" class="java.lang.String" itemvalue="PHP Script.upload_files.php" />
-      <item index="4" class="java.lang.String" itemvalue="PHP Script.create_project.php" />
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Node.js.function.js" />
+      <item index="1" class="java.lang.String" itemvalue="JavaScript Debug.index.html (1)" />
+      <item index="2" class="java.lang.String" itemvalue="JavaScript Debug.index.html (2)" />
+      <item index="3" class="java.lang.String" itemvalue="JavaScript Debug.up_test.html" />
+      <item index="4" class="java.lang.String" itemvalue="PHP Script.upload_files.php" />
+      <item index="5" class="java.lang.String" itemvalue="PHP Script.create_project.php" />
     </list>
     <recent_temporary>
       <list size="5">
@@ -436,13 +387,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1919" y="144" width="1922" height="1033" extended-state="7" />
-    <editor active="true" />
+    <frame x="1920" y="144" width="1920" height="1032" extended-state="1" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22604166" sideWeight="0.495585" order="1" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23397435" sideWeight="0.495585" order="1" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.49815497" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32834226" sideWeight="0.50395364" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32959402" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.4960464" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296582" sideWeight="0.4960464" order="2" side_tool="false" content_ui="tabs" />
@@ -476,29 +427,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/public_html/define_current_projet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/index.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="0" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/create_project.php">
+    <entry file="file://$PROJECT_DIR$/public_html/workspace/ng-cistrans-reg_projects/toto/data/description.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1460557861361" expanded="true" signature="5039:5086" placeholder="CREATE TABLE... sample_descriptions" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -676,24 +608,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/description.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/modif_users_access.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-28.125">
           <caret line="45" column="44" selection-start-line="45" selection-start-column="43" selection-end-line="45" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/access/tmp_groups">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -740,20 +658,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/upload_files.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.77262443">
-          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/css/NGcistrans_styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7319005">
-          <caret line="19" column="7" selection-start-line="19" selection-start-column="7" selection-end-line="19" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/manage_files2.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.13800906">
@@ -761,40 +665,31 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/js/NGcistrans_functions.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="9" selection-end-line="51" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/manage_files.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.2545249">
-          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/define_current_projet.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="5" column="14" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="20" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/upload_files.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-30.0">
+          <caret line="48" column="17" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/uploadify.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-18.75">
-          <caret line="30" column="162" selection-start-line="30" selection-start-column="8" selection-end-line="30" selection-end-column="164" />
+          <caret line="30" column="142" selection-start-line="30" selection-start-column="140" selection-end-line="30" selection-end-column="142" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/access/groups">
+    <entry file="file://$PROJECT_DIR$/public_html/css/NGcistrans_styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-27.458334">
+          <caret line="173" column="1" selection-start-line="173" selection-start-column="1" selection-end-line="173" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -805,59 +700,99 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/write_yaml.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11764706">
-          <caret line="101" column="36" selection-start-line="101" selection-start-column="36" selection-end-line="101" selection-end-column="36" />
-          <folding>
-            <marker date="1460730901507" expanded="true" signature="2070:2109" placeholder="DROP TABLE I... " />
-            <marker date="1460730901507" expanded="true" signature="2074:2109" placeholder="CREATE TABLE... serie_descriptions" />
-            <marker date="1460730901507" expanded="true" signature="2143:2205" placeholder="CREATE TABLE... serie_descriptions" />
-            <marker date="1460730901507" expanded="true" signature="2529:2602" placeholder="INSERT INTO serie_descriptions... " />
-            <marker date="1460730901507" expanded="true" signature="2746:2818" placeholder="INSERT INTO serie_descriptions... " />
-            <marker date="1460730901507" expanded="true" signature="2970:3010" placeholder="DROP TABLE I... " />
-            <marker date="1460730901507" expanded="true" signature="3378:3412" placeholder="CREATE TABLE... sample_descriptions" />
-            <marker date="1460730901507" expanded="true" signature="3378:3425" placeholder="CREATE TABLE... sample_descriptions" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/form_write_yaml.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5090498">
-          <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding>
-            <marker date="1460728727715" expanded="true" signature="856:875" placeholder="SELECT * FRO... sample_descriptions" />
-            <marker date="1460728727715" expanded="true" signature="1377:1484" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/public_html/create_project.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6606335">
-          <caret line="134" column="53" selection-start-line="134" selection-start-column="12" selection-end-line="136" selection-end-column="73" />
-          <folding>
-            <marker date="1460557861361" expanded="true" signature="5039:5086" placeholder="CREATE TABLE... sample_descriptions" />
-          </folding>
+        <state vertical-scroll-proportion="0.58597285">
+          <caret line="128" column="49" selection-start-line="128" selection-start-column="49" selection-end-line="128" selection-end-column="49" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+    <entry file="file://$PROJECT_DIR$/access/groups">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-40.0">
-          <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/access/tmp_groups">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/define_groups.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.625">
+          <caret line="22" column="76" selection-start-line="22" selection-start-column="76" selection-end-line="22" selection-end-column="76" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/write_yaml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.22535211">
+          <caret line="108" column="0" selection-start-line="108" selection-start-column="0" selection-end-line="108" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/workspace/ng-cistrans-reg_projects/toto/data/description.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.89041096">
+          <caret line="52" column="2" selection-start-line="52" selection-start-column="2" selection-end-line="52" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config_files/supported_data_types.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="3" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="3" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/public_html/project_menu.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.73190045">
-          <caret line="74" column="13" selection-start-line="74" selection-start-column="13" selection-end-line="74" selection-end-column="13" />
+        <state vertical-scroll-proportion="-11.125">
+          <caret line="70" column="94" selection-start-line="70" selection-start-column="94" selection-end-line="70" selection-end-column="94" />
           <folding>
             <marker date="1460364119579" expanded="true" signature="3315:3526" placeholder="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/manage_files.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.375">
+          <caret line="15" column="2" selection-start-line="15" selection-start-column="2" selection-end-line="15" selection-end-column="2" />
+          <folding>
+            <marker date="1462260297634" expanded="true" signature="651:693" placeholder="DELETE FROM " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/js/NGcistrans_functions.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.59931505">
+          <caret line="64" column="39" selection-start-line="64" selection-start-column="39" selection-end-line="64" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/form_write_yaml.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.24647887">
+          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding>
+            <marker date="1462209908031" expanded="true" signature="965:984" placeholder="SELECT * FRO... files" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public_html/index.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.471831">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

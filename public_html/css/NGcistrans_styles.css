@@ -139,7 +139,7 @@ th {
     color: #0080ff;
 }
 
-form#form-yaml label {
+label {
 	display: block; /* La balise devient de type block. */
 	width: 300px; /* Cette largeur sert d’exemple, vous pouvez la modifier si vous voulez. */
 	float: left;
@@ -166,6 +166,14 @@ form#form-yaml label {
 }
 
 #Data_clone {
+    display: none;
+}
+
+#grouping {
+    float:left;
+}
+
+#grouping_clone {
     display: none;
 }
 
