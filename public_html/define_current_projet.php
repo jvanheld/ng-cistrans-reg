@@ -5,7 +5,6 @@ session_start();
 $_SESSION["path_project"] = "./workspace/ng-cistrans-reg_projects/" . $_POST["currentProjet"];
 $_SESSION["project"] = $_POST["currentProjet"];
 
-
 ?>
 
 

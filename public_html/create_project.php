@@ -141,7 +141,6 @@ if(empty($_POST["Name_project"]) ){
             echo "Database and table has been created <br>";
 
         }
-
 }
 
 ?>

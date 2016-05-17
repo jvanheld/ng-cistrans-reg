@@ -169,14 +169,20 @@ label {
     display: none;
 }
 
-#grouping {
+#group_definition {
     float:left;
 }
 
-#grouping_clone {
+#group_definition_clone {
     display: none;
 }
 
+#group_assignation_clone{
+    display: none;
+}
+.clone{
+    display: none;
+}
 #create_project {
    padding: 30px;
 }

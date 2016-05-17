@@ -25,7 +25,7 @@
         <fieldset>
             <legend>Information</legend>
         <label for= "Name_project"><a href="#" class="info">Project name <span>Enter the name project.</span></a></label>
-        <input type='text' name="Name_project" id="Name_project" value="" ><br>
+        <input type='text' class="input_without_space" name="Name_project" id="Name_project" value="" ><br>
 
             Select users you invite to collaborate on this new project <br>
 <?php

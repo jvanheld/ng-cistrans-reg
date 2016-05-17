@@ -20,7 +20,7 @@ session_start();
 //Part for write grouping_table on current database project.
 $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] .".db");//open database project
 
-$db->exec('DROP TABLE IF EXISTS grouping_table');//remove old table if exist
+$db->exec('DROP TABLE IF EXISTS rna_groups_table');//remove old table if exist
 
 $featureList = "";
 foreach (array_keys($_POST)as $item) {
@@ -32,20 +32,33 @@ $featureListTrimmed = rtrim($featureList,", ");
 $featureCount= 1;
 foreach (array_keys($_POST)as $item) {
     if ($featureCount == 1){
-        $db->exec("CREATE TABLE grouping_table ($item STRING)");
+        $db->exec("CREATE TABLE rna_groups_table ($item STRING)");
     }
     else{
-        $db->exec("ALTER TABLE grouping_table ADD COLUMN $item STRING");
+        $db->exec("ALTER TABLE rna_groups_table ADD COLUMN $item STRING");
     }
     $featureCount ++;
 }
 //Get value line by line without the first one because it empty (hidden line use like template)
-for($sample = 1; $sample < count($_POST["md5sum"]); $sample++){
+for($sample = 1; $sample < count($_POST["Group_name"]); $sample++){
     $valueToAdd = "";
+
     foreach($_POST as $key => $value) {
-        $valueToAdd = $valueToAdd . "'" .$value[$sample] . "'" . ", ";
+        if(preg_match("#/^[a-zA-Z0-9\s]+$#",$value)){
+            $valueToAdd = $valueToAdd . "'" .$value[$sample] . "'" . ", ";
+
+        }else{
+            $valueToAdd = $valueToAdd . "'" .filter_var($value[$sample],FILTER_SANITIZE_FULL_SPECIAL_CHARS) . "'" . ", ";
+        }
     }
+
     $valueToAddTrimmed = rtrim($valueToAdd,", ");
-    $db->exec("INSERT INTO grouping_table ($featureListTrimmed) VALUES ($valueToAddTrimmed)");//request to insert a new line who correspond to the new description
+    echo $valueToAddTrimmed;
+
+    $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] .".db");//open database project
+
+    $db->exec("INSERT INTO rna_groups_table ($featureListTrimmed) VALUES ($valueToAddTrimmed)");//request to insert a new line who correspond to the new description
+
 }
+
 ?>

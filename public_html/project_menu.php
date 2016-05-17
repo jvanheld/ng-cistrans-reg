@@ -71,7 +71,11 @@ foreach ($rows as $row ) {
 <!--            <li><a href="#files" id="show_files">Manage project files (version 1)</a></li>
             <li><a href="manage_files2.php" id="show_files2">Manage project files (version 2)</a></li>-->
             <li><a href="form_write_yaml.php">Manage project descriptions</a></li>
-            <li><a href="run_analysis.php">Run analysis</a></li>
+<!--            <li><a href="run_analysis.php">Run analysis</a></li>-->
+            <li><a href="run_analysis.php">ChIP-seq Workflow</a></li>
+            <li><a href="rna_analysis.php">RNA-seq Workflow</a></li>
+            <li><a href="run_analysis.php">ChIP-seq and RNA-seq integration</a></li>
+
         </ul>
     </div>
 

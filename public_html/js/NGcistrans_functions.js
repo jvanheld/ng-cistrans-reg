@@ -9,7 +9,7 @@ $(document).ready(function () {
 
             return;
         }
-        if (! /^[a-zA-Z0-9]+$/.test($columnName)){ // check if the string write by user is available
+        if (! /^[a-zA-Z0-9_-]+$/.test($columnName)){ // check if the string write by user is available
             return;
         }
 
@@ -32,6 +32,72 @@ $(document).ready(function () {
         });
 
     });
+
+    $(document).on('keydown','.input_without_space',function (event) {
+        switch (event.keyCode) {
+            case 8:  // Backspace
+            case 13: // Enter
+            case 37: // Left
+            case 38: // Up
+            case 39: // Right
+            case 40: // Down
+                break;
+            default:
+                var regex = new RegExp("^[a-zA-Z0-9_-]+$");
+                var key = event.key;
+                if (!regex.test(key)) {
+                    event.preventDefault();
+                    alert("Blank and special characters are not allowed in this field. You can use \"-\" or \"_\"");
+                    return false;
+                }
+                break;
+        }
+    });
+
+    /*$('.input_without_space').on("keydown",function (event) {
+        switch (event.keyCode) {
+            case 8:  // Backspace
+            case 13: // Enter
+            case 37: // Left
+            case 38: // Up
+            case 39: // Right
+            case 40: // Down
+                break;
+            default:
+                var regex = new RegExp("^[a-zA-Z0-9_-]+$");
+                var key = event.key;
+                if (!regex.test(key)) {
+                    event.preventDefault();
+                    alert("Special characters are not allowed in this field.");
+                    return false;
+                }
+                break;
+        }
+
+    });*/
+
+    $(document).on('keydown','.input_with_space',function (event) {
+        switch (event.keyCode) {
+            case 8:  // Backspace
+            case 13: // Enter
+            case 37: // Left
+            case 38: // Up
+            case 39: // Right
+            case 40: // Down
+                break;
+            default:
+                var regex = new RegExp("^[a-zA-Z0-9\\s]+$");
+                var key = event.key;
+                if (!regex.test(key)) {
+                    event.preventDefault();
+                    alert("Special characters are not allowed in this field.");
+                    return false;
+                }
+                break;
+        }
+    });
+
+//    alert("Blank and special characters are not allowed in this field. You can use \"-\" or \"_\"");
 
     $(".Go").click(function () {
 
@@ -109,6 +175,15 @@ $(document).ready(function () {
 
     $("#User_access_table").on("click","#deleteUser",function() {
         $(this).parents().eq(1).remove();
+    });
+
+    $indexGroup = 1;
+    $("#group_definition").on("click","#add_group",function () {
+        $indexGroup++;
+        var $newTr = $("#group_definition_clone").clone().attr("id", "group_definition"+ $indexGroup);
+        $newTr.find("input").each(function() {
+            $(this).val('').attr("id",function(_, id) { return id + $indexGroup });
+        }).end().appendTo("#group_definition");
     });
 
 

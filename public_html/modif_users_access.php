@@ -76,3 +76,21 @@ if (isset($_POST['add_user_access'])) {
 }
 
 ?>
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>NG-cistrans-reg Project</title>
+
+		<link rel="stylesheet" type="text/css" href="css/NGcistrans_styles.css">
+
+<script type="text/javascript" src="jQuery/jquery-1.12.0.js"></script>
+
+	</head>
+
+<h2>Manage access</h2>
+
+    <script language="javascript">
+        window.location.href = "project_menu.php"
+    </script>
