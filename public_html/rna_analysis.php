@@ -26,18 +26,21 @@ while($oneNameTable = $allNameTables->fetchArray(SQLITE3_ASSOC)){// Store all re
 }
 
 //Check groups are defined
-$numberOfGroups = $db->query('SELECT COUNT(*) FROM rna_groups_table');//make request to get all Group_name defined
-$numberOfGroupsArray = $numberOfGroups->fetchArray(SQLITE3_ASSOC);
+if( in_array("rna_groups_table",$allNameTablesDefined)){
+    $numberOfGroups = $db->query('SELECT COUNT(*) FROM rna_groups_table');//make request to get all Group_name defined
+    $numberOfGroupsArray = $numberOfGroups->fetchArray(SQLITE3_ASSOC);
 
-if( in_array("rna_groups_table",$allNameTablesDefined) && $numberOfGroupsArray["COUNT(*)"]>=1){
-    //each groups defined are display by one checkbox
-    $results2 = $db->query('SELECT Group_name FROM rna_groups_table');//make request to get all Group_name defined
-    $groupsTable = array();//create an array
-    $i = 0;
-    while($res2 = $results2->fetchArray(SQLITE3_ASSOC)){// Store all results in an array
-        $groupsTable[$i] = $res2["Group_name"];
-        $i++;
+    if( in_array("rna_groups_table",$allNameTablesDefined) && $numberOfGroupsArray["COUNT(*)"]>=1){
+        //each groups defined are display by one checkbox
+        $results2 = $db->query('SELECT Group_name FROM rna_groups_table');//make request to get all Group_name defined
+        $groupsTable = array();//create an array
+        $i = 0;
+        while($res2 = $results2->fetchArray(SQLITE3_ASSOC)){// Store all results in an array
+            $groupsTable[$i] = $res2["Group_name"];
+            $i++;
+        }
     }
+
 }
 
 ?>
@@ -148,20 +151,18 @@ if( in_array("rna_groups_table",$allNameTablesDefined) && $numberOfGroupsArray["
     function load_groups_defined() {
         var tableGroupsDefined = <?php echo json_encode($groupsTable)?>;
         var tableId2 = <?php echo json_encode($filesTable2)?>;
-        $("td.Groups_available2").append('<input type=checkbox class="clone">');
+        //$("td.Groups_available2").append('<input type=checkbox class="clone">');
 
         tableGroupsDefined.forEach(function (entry) {
             for (var i=0; i < tableId2.length; i++){
-                console.log(i);
-                var name = tableId2[i]["md5sum"] +"[]";
-                console.log(name);
+                //console.log(i);
+                var name = "rna_groups_assignation[" + tableId2[i]["md5sum"] +"][]";
+                //console.log(name);
                 var selectTd = "td.Groups_available2:eq("+(i+1)+")";
-                console.log(selectTd);
+                //console.log(selectTd);
                 $(selectTd).append('<input type=checkbox name=' + name +' value=' + entry + '>' + entry);
             }
         });
-
-
 
     }
     </script>

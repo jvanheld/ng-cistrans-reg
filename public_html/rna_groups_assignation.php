@@ -24,38 +24,39 @@ $db = new SQLite3( $_SESSION["path_project"] . "/" . $_SESSION["project"] . ".db
 //Table rna_groups_assignation = $_POST["rna_groups_assignation"]
 $db->exec('DROP TABLE IF EXISTS rna_groups_assignation');//remove old table
 
-$featureList = "";
+/*$featureList = "";
 foreach (array_keys($_POST["rna_groups_assignation"])as $item) {
     $featureList = $featureList . $item . ", ";
 }
-$featureListTrimmed = rtrim($featureList,", ");
+$featureListTrimmed = rtrim($featureList,", ");*/
 
-//Read all keys for create the table
-$featureCount= 1;
-foreach (array_keys($_POST["rna_groups_assignation"])as $item) {
-    if ($featureCount == 1){
-        $db->exec("CREATE TABLE rna_groups_assignation ($item STRING)");
-    }
-    else{
-        $db->exec("ALTER TABLE rna_groups_assignation ADD COLUMN $item STRING");
-    }
-    $featureCount ++;
-}
-//Creation of groups associated column
-$db->exec("ALTER TABLE rna_groups_assignation ADD COLUMN 'groups associated' STRING");
-$featureListTrimmed= $featureListTrimmed . ", groups associated";
+//Create table
+$db->exec("CREATE TABLE rna_groups_assignation (md5sum STRING, Sample_name STRING, groups_associated STRING)");
 
-print_r($_POST["rna_groups_assignation"]);
+//print_r($_POST["rna_groups_assignation"]);
+
+/*foreach($_POST["rna_groups_assignation"]["md5sum"] as $key => $value) {
+    //echo $key . "<br>";
+    $md5=$value;
+
+
+}*/
 
 //Get value line by line without the first one because it empty (hidden line use like template)
 for($sample = 1; $sample < count($_POST["rna_groups_assignation"]["md5sum"]); $sample++){
-    $valueToAdd = "";
-    foreach($_POST["rna_groups_assignation"] as $key => $value) {
-        $valueToAdd = $valueToAdd . "'" .$value[$sample] . "'" . ", ";
+    $md5= $_POST["rna_groups_assignation"]["md5sum"][$sample];
+    $Sample_name=$_POST["rna_groups_assignation"]["Sample_name"][$sample];
+    $groups = "";
+    foreach($_POST["rna_groups_assignation"][$md5] as $group => $groupName){
+        $groups = $groups  . $groupName .  ", ";
     }
-    $valueToAddTrimmed = rtrim($valueToAdd,", ");
+    $groupsToAdd=rtrim($groups,", ");
+    //echo $groupsToAdd;
 
-    $db->exec("INSERT INTO rna_groups_assignation ($featureListTrimmed) VALUES ($valueToAddTrimmed)");//request to insert a new line who correspond to the new description
+    $valueToAddTrimmed = "'" . $md5 .  "'" . ", " .  "'" . $Sample_name . "'" . ", " .  "'" . $groupsToAdd . "'";
+    echo $valueToAddTrimmed;
+
+    $db->exec("INSERT INTO rna_groups_assignation (md5sum,Sample_name,groups_associated) VALUES ($valueToAddTrimmed)");//request to insert a new line who correspond to the new description
 
 }
 
