@@ -54,13 +54,15 @@ for($sample = 1; $sample < count($_POST["rna_groups_assignation"]["md5sum"]); $s
     //echo $groupsToAdd;
 
     $valueToAddTrimmed = "'" . $md5 .  "'" . ", " .  "'" . $Sample_name . "'" . ", " .  "'" . $groupsToAdd . "'";
-    echo $valueToAddTrimmed;
+    //echo $valueToAddTrimmed;
 
     $db->exec("INSERT INTO rna_groups_assignation (md5sum,Sample_name,groups_associated) VALUES ($valueToAddTrimmed)");//request to insert a new line who correspond to the new description
 
 }
 
 ?>
+
+<a href="javascript:history.go(-1)">Go Back</a>
 
 </body>
 </html>

@@ -141,7 +141,7 @@ foreach($_POST["Protocols_information"] as $key => $value){
 
 ?>
 
-	<a href="javascript:history.go(-1)">Retour</a>
+	<a href="javascript:history.go(-1)">Go Back</a>
 
 	</body>
 </html>

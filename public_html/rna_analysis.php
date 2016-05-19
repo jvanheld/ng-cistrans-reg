@@ -25,7 +25,7 @@ while($oneNameTable = $allNameTables->fetchArray(SQLITE3_ASSOC)){// Store all re
     $i++;
 }
 
-//Check groups are defined
+//Check if groups are defined
 if( in_array("rna_groups_table",$allNameTablesDefined)){
     $numberOfGroups = $db->query('SELECT COUNT(*) FROM rna_groups_table');//make request to get all Group_name defined
     $numberOfGroupsArray = $numberOfGroups->fetchArray(SQLITE3_ASSOC);
@@ -43,12 +43,29 @@ if( in_array("rna_groups_table",$allNameTablesDefined)){
 
 }
 
+//Check if at least 2 groups are defined and associated with at least one sample by group.
+//Check if rna_groups_assignation table exist
+if( in_array("rna_groups_assignation",$allNameTablesDefined)) {
+    $groupsAssoToSample = $db->query('SELECT groups_associated FROM rna_groups_assignation');//make request to get all Group_name defined and associated with at least one sample
+    $groupsAssoToSampleArray = array();
+    $i = 0;
+    while($resultsInter = $groupsAssoToSample->fetchArray(SQLITE3_ASSOC)){// Store all results in an array
+        $groupsAssoToSampleArray[$i] = $resultsInter["groups_associated"];
+        $i++;
+    }
+    $groupsAssoToSampleArrayUnique = array_unique($groupsAssoToSampleArray);
+
+    foreach($groupsAssoToSampleArrayUnique as $toto){
+        echo $toto;
+    }
+}
+
 ?>
 <script type="text/javascript" src="js/NGcistrans_functions.js"></script>
 
 <h2>Sample grouping</h2>
 
-<form id="form-groups" action="define_groups.php" method="post">
+<form id="form-define-groups" action="define_groups.php" method="post">
 
     <fieldset>
         <legend>Group definitions</legend>
@@ -82,7 +99,7 @@ if( in_array("rna_groups_table",$allNameTablesDefined)){
 
 </form>
 
-<form id="form-groups" action="rna_groups_assignation.php" method="post">
+<form id="form-assignation-groups" action="rna_groups_assignation.php" method="post">
 <fieldset>
     <legend>Sample-Group assignation</legend>
 
@@ -111,6 +128,14 @@ if( in_array("rna_groups_table",$allNameTablesDefined)){
 </form>
 
 <h2>Design description</h2>
+
+<p>Select groups/conditions you want to analyze, if some are not available it's because they are not associated with any sample.</p>
+
+<form id="form-groups-to-analyse" action="write_design_file.php" method="post">
+
+
+    <input type="submit" value="Valider">
+</form>
 
 <script type="text/javascript">
     function load_file_id_uploaded(){
@@ -166,10 +191,28 @@ if( in_array("rna_groups_table",$allNameTablesDefined)){
 
     }
     </script>
+
+<script type="text/javascript">
+    function load_groups_defined_and_associated_with_sample() {
+        var tableGroupsDefinedAndAssoUnique = <?php echo json_encode($groupsAssoToSampleArrayUnique)?>;
+
+        /*tableGroupsDefinedAndAssoUnique.forEach(function (entry) {
+            $("#form-groups-to-analyse").append('<input type=checkbox name="condition_to_analyse[]" value=' + entry + '>' + entry);
+        });*/
+        Array.prototype.forEach.call(tableGroupsDefinedAndAssoUnique, entry =>{$("#form-groups-to-analyse").append('<input type=checkbox name="condition_to_analyse[]" value=' + entry + '>' + entry);})
+
+    }
+</script>
+
+
 <?php if(!empty($filesTable2)){
     echo "<script type=\"text/javascript\">load_file_id_uploaded()</script>";
 }?>
 
 <?php if(!empty($groupsTable)){
     echo "<script type=\"text/javascript\">load_groups_defined()</script>";
+}?>
+
+<?php if(!empty($groupsAssoToSampleArrayUnique)){
+    echo "<script type=\"text/javascript\">load_groups_defined_and_associated_with_sample()</script>";
 }?>
