@@ -196,10 +196,10 @@ if( in_array("rna_groups_assignation",$allNameTablesDefined)) {
     function load_groups_defined_and_associated_with_sample() {
         var tableGroupsDefinedAndAssoUnique = <?php echo json_encode($groupsAssoToSampleArrayUnique)?>;
 
-        /*tableGroupsDefinedAndAssoUnique.forEach(function (entry) {
+        tableGroupsDefinedAndAssoUnique.forEach(function (entry) {
             $("#form-groups-to-analyse").append('<input type=checkbox name="condition_to_analyse[]" value=' + entry + '>' + entry);
-        });*/
-        Array.prototype.forEach.call(tableGroupsDefinedAndAssoUnique, entry =>{$("#form-groups-to-analyse").append('<input type=checkbox name="condition_to_analyse[]" value=' + entry + '>' + entry);})
+        });
+        //Array.prototype.forEach.call(tableGroupsDefinedAndAssoUnique, entry =>{$("#form-groups-to-analyse").append('<input type=checkbox name="condition_to_analyse[]" value=' + entry + '>' + entry);})
 
     }
 </script>
